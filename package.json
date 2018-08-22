@@ -1,0 +1,14 @@
+{
+  "name": "socratic-network",
+  "version": "0.1.0",
+  "description": "Social argument refinement",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "hcm",
+  "license": "ISC",
+  "dependencies": {
+    "tracer": "^0.9.1"
+  }
+}
