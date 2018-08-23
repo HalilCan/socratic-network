@@ -46,13 +46,17 @@ async function addToArchive(jsonPost) {
 }
 
 function readArchiveSync() {
+    /*
     stat(archivePath).then(function (err) {
         if (err) {
             if (error.code !== "ENOENT") throw error;
             else return {status: 404, body: "Archive file not found!"};
         }
     });
-    return JSON.parse(fs.readFile(archivePath));
+    */
+    let file = fs.readFileSync(archivePath);
+    console.log(file);
+    return JSON.parse(file);
 }
 
 async function readArchive() {
