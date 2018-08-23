@@ -4,8 +4,6 @@ socket.on('news', function (data) {
     socket.emit('my other event', {my: 'data'});
 });
 
-let postCount = 0;
-
 function requestPostCount() {
     socket.emit('get post count');
 }
@@ -38,7 +36,7 @@ function setReadInterface(element, ...options) {
     element.innerHTML = '';
     if (!options) {
         let postCount = requestPostCount();
-        for (let i = 0; i < postCount, i ++) {
+        for (let i = 0; i < postCount; i ++) {
             getPostByIndex(i);
         }
     }
