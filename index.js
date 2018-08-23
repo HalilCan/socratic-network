@@ -23,10 +23,8 @@ io.on('connection', function (socket) {
     });
     socket.on('get post by index', function (data) {
         let index = data.index;
-        let archive = readArchiveSync().posts[index];
-        console.log(`Entire archive: ${archive}`);
-        console.log(`Entire archive stringified: ${JSON.stringify(archive)}`);
-        socket.emit('post by index', {post: archive.posts[index]});
+        let post = readArchiveSync().posts[index];
+        socket.emit('post by index', {post: post});
     });
 });
 
