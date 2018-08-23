@@ -9,8 +9,13 @@ function requestPostCount() {
 }
 
 let postCount = 0;
+let isPCUpdated = false;
+let pcUpdatedFunction;
 socket.on('post count response', (data) => {
+    console.log(`postCount response: ${data.postCount}`);
     postCount = data.postCount;
+    isPCUpdated = true;
+    pcUpdatedFunction();
 });
 
 function getPostByIndex(index) {
@@ -36,8 +41,13 @@ function formatPost(postObject) {
 function setReadInterface(element, ...options) {
     element.innerHTML = '';
     requestPostCount();
-    for (let i = 0; i < postCount; i++) {
-        getPostByIndex(i);
+    if (!isPCUpdated) {
+        pcUpdatedFunction = () => {
+            for (let i = 0; i < postCount; i++) {
+                console.log(i);
+                getPostByIndex(i);
+            }
+        }
     }
 }
 
