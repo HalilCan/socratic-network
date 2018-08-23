@@ -27,6 +27,13 @@
     .post-body {
         font-size: 16px;
         line-height: 22px;
+        margin-bottom: 20px;
+        text-indent: 15px;
+    }
+
+    .post-paragraph {
+        font-size: 16px;
+        line-height: 22px;
         margin-bottom: 10px;
         text-indent: 15px;
     }
@@ -64,6 +71,13 @@
     }
 
     .post-body {
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 20px;
+        text-indent: 20px;
+    }
+
+    .post-paragraph {
         font-size: 16px;
         line-height: 22px;
         margin-bottom: 10px;
