@@ -23,7 +23,7 @@ io.on('connection', function (socket) {
     });
     socket.on('get post by index', function (data) {
         let index = data.index;
-        let post = readArchiveSync().posts[index];
+        let post = readArchiveSync().posts[index] || readArchiveSync().posts[0];
         console.log(post);
         socket.emit('post by index', {post: post});
     });
