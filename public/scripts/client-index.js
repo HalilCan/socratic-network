@@ -96,18 +96,20 @@ function publish() {
 
     //Sham passcode
     //TODO: change this or you just made a forum lol
-    if (passCodeField.innerText !== "hcm") return -1;
-
+    if (passCodeField.value !== "hcm") {
+        console.log(passCodeField.value);
+        return -1;
+    }
     console.log('passCheck passed');
 
     let obj = {
         index: 999,
-        "subjects": subjectField.innerText.split(" "),
-        "title": titleField.innerText,
-        "subtitle": subTitleField.innerText,
+        "subjects": subjectField.value.split(" "),
+        "title": titleField.value,
+        "subtitle": subTitleField.value,
         "author": "hcm",
-        "body": bodyField.innerText,
-        "labels": labelsField.innerText.split(" ")
+        "body": bodyField.value,
+        "labels": labelsField.value.split(" ")
     };
     socket.emit('write mode published', obj);
 }
