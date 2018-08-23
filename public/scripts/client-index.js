@@ -20,7 +20,7 @@ function formatPost (postObject) {
 
 function getformattedBody (body) {
     let bodyArray = body.split('\n');
-    let formattedBody;
+    let formattedBody = "";
     for (let paragraph of bodyArray) {
         formattedBody += "<div class = 'post-paragraph'>" + paragraph + "</div>"
     }
