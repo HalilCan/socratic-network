@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "index": 0,
+      "subjects": [],
+      "title": "TEST TITLE",
+      "subtitle": "TEST subtitle",
+      "author": "hcm",
+      "body": "TEST BODY BAYBY",
+      "labels": []
+    },
+    {
+      "index": 1,
+      "subjects": ["SCIENCE BABY"],
+      "title": "TEST TITLE 2",
+      "subtitle": "TEST subtitle 2",
+      "author": "hcm",
+      "body": "TEST BODY 2 ELECTRIC BOOGALOO",
+      "labels": []
+    }
+  ]
+}

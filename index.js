@@ -24,13 +24,14 @@ io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
         let index = data.index;
         let archive = readArchiveSync().posts[index];
-        console.log(archive);
+        console.log(`Entire archive: ${archive}`);
+        console.log(`Entire archive stringified: ${JSON.stringify(archive)}`);
         socket.emit('post by index', {post: archive.posts[index]});
     });
 });
 
 
-const archivePath = "/archive/arc.json";
+const archivePath = __dirname + "/public/archive/arc.json";
 const util = require("util");
 const fs = require("fs");
 const {stat} = require("fs").promises;
@@ -46,16 +47,13 @@ async function addToArchive(jsonPost) {
 }
 
 function readArchiveSync() {
-    /*
-    stat(archivePath).then(function (err) {
+    stat(archivePath).then((err) => {
         if (err) {
             if (error.code !== "ENOENT") throw error;
             else return {status: 404, body: "Archive file not found!"};
         }
     });
-    */
     let file = fs.readFileSync(archivePath);
-    console.log(file);
     return JSON.parse(file);
 }
 
