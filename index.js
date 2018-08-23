@@ -31,6 +31,9 @@ io.on('connection', function (socket) {
         console.log(JSON.stringify(data));
         addToArchive(data);
     });
+    socket.on('get post count', () => {
+        return readArchiveSync().posts.length;
+    })
 });
 
 
@@ -45,6 +48,7 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 function addToArchive(jsonPost) {
     let archive = readArchiveSync();
+    jsonPost.index = readArchiveSync().posts.length;
     archive.posts.push(jsonPost);
     saveArchive(archive);
 }
