@@ -52,7 +52,6 @@ async function addToArchive(jsonPost) {
 
 async function readArchive() {
     let stats;
-
     try {
         stats = await stat(archivePath)
     } catch (error) {
