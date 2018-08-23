@@ -10,7 +10,6 @@ ul.topnav {
     overflow: hidden;
     background-color: #fef9ee;
     padding-left: calc(50vw - 70px);
-
 }
 
 ul.topnav li {float: left}
@@ -85,7 +84,9 @@ ul.topnav li.right {float: right;}
         font-size: 10px;
         color: #444;
     }
+}
 
+@media only screen and (max-width: 600px) {
     ul.topnav li.right,
     ul.topnav li {float: none;}
 }
