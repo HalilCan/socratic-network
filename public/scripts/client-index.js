@@ -25,7 +25,43 @@ function formatPost(postObject) {
 function setPublishInterface(element) {
     let pubContainer = document.createElement("div");
     pubContainer.id = "pub-container";
-    let
+
+    let titleField = document.createElement("input");
+    titleField.type = "text";
+    titleField.name = "title";
+    titleField.className = "pub-field";
+    titleField.id = "pub-title";
+    pubContainer.appendChild(titleField);
+
+    let subTitleField = document.createElement("input");
+    subTitleField.type = "text";
+    subTitleField.name = "subTitle";
+    subTitleField.className = "pub-field";
+    subTitleField.id = "pub-subTitle";
+    pubContainer.appendChild(subTitleField);
+
+    let subjectField = document.createElement("input");
+    subjectField.type = "text";
+    subjectField.name = "subject";
+    subjectField.className = "pub-field";
+    subjectField.id = "pub-subject";
+    pubContainer.appendChild(subjectField);
+
+    let essayField = document.createElement("input");
+    essayField.type = "text";
+    essayField.name = "essay";
+    essayField.className = "pub-field";
+    essayField.id = "pub-essay";
+    pubContainer.appendChild(essayField);
+
+    let labelsField = document.createElement("input");
+    labelsField.type = "text";
+    labelsField.name = "labels";
+    labelsField.className = "pub-field";
+    labelsField.id = "pub-labels";
+    pubContainer.appendChild(labelsField);
+
+    element.appendChild(pubContainer)
 }
 
 function getformattedBody(body) {
