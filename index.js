@@ -32,8 +32,8 @@ io.on('connection', function (socket) {
         addToArchive(data);
     });
     socket.on('get post count', () => {
-        return readArchiveSync().posts.length;
-    })
+        socket.emit('post count response', {postCount: readArchiveSync().posts.length});
+    });
 });
 
 

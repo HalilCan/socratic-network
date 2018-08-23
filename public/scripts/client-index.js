@@ -4,9 +4,6 @@ socket.on('news', function (data) {
     socket.emit('my other event', {my: 'data'});
 });
 
-function testArcSocket() {
-}
-
 let postCount = 0;
 
 function requestPostCount() {
@@ -21,6 +18,10 @@ function getPostByIndex(index) {
     socket.emit('get post by index', {index: index});
 }
 
+function readMode() {
+    setReadInterface(document.getElementById("real-estate"));
+}
+
 function writeMode(event) {
     setPublishInterface(document.getElementById("real-estate"));
 }
@@ -32,6 +33,10 @@ socket.on('post by index', function (data) {
 
 function formatPost(postObject) {
     return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> <div class = 'post-separator'></div> </div>";
+}
+
+function setReadInterface(element) {
+
 }
 
 function setPublishInterface(element) {
