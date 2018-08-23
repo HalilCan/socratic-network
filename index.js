@@ -34,16 +34,6 @@ const {stat} = require("fs").promises;
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-async function getStuff() {
-
-}
-
-// Can't use `await` outside of an async function so you need to chain
-// with then()
-getStuff().then(data => {
-    console.log(data);
-})
-
 async function addToArchive(jsonPost) {
     let archive = await readArchive();
     archive.posts = archive.posts.push(jsonPost);
@@ -53,12 +43,11 @@ async function addToArchive(jsonPost) {
 async function readArchive() {
     let stats;
     try {
-        stats = await stat(archivePath)
+        stats = await stat(archivePath);
     } catch (error) {
         if (error.code !== "ENOENT") throw error;
         else return {status: 404, body: "Archive file not found!"};
     }
-
     //return readStreamPromise(createReadStream(archivePath));
     return await readFileAsync(archivePath);
 }
@@ -67,9 +56,11 @@ async function saveArchive(updatedArchive) {
     await writeFileAsync(archivePath, updatedArchive);
 }
 
+/*
 function readStreamPromise(from) {
     return new Promise((resolve, reject) => {
         from.on("error", reject);
         from.on("finish", resolve);
     })
 }
+*/
