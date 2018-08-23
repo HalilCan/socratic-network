@@ -30,8 +30,8 @@ io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
         let index = data.index;
         let archive = readArchive().posts[index];
-
-        socket.emit('post by index', {post:})
+        console.log(archive);
+        socket.emit('post by index', {post: archive.posts[index]});
     });
 });
 
