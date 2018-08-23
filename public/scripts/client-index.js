@@ -84,6 +84,30 @@ function setPublishInterface(element) {
     element.appendChild(pubContainer)
 }
 
+function publish() {
+    let titleField = document.getElementById("pub-title");
+    let subTitleField = document.getElementById("pub-subTitle");
+    let subjectField = document.getElementById("pub-subject");
+    let bodyField = document.getElementById("pub-essay");
+    let labelsField = document.getElementById("pub-labels");
+    let passCodeField = document.getElementById("pub-passCode");
+
+    //Sham passcode
+    //TODO: change this or you just made a forum lol
+    if (passCodeField.innerText !== "hcm") return -1;
+
+    let obj = {
+        index: 999,
+        "subjects": subjectField.innerText.split(" "),
+        "title": titleField.innerText,
+        "subtitle": subTitleField.innerText,
+        "author": "hcm",
+        "body": bodyField.innerText,
+        "labels": labelsField.innerText.split(" ")
+    };
+    socket.emit('write mode published', obj);
+}
+
 function getformattedBody(body) {
     let bodyArray = body.split('\n');
     let formattedBody = "";
