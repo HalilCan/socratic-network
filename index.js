@@ -26,9 +26,9 @@ async function notAllowed(request) {
 }
 
 const archivePath = "/archive/arc.json";
-const {createReadStream, readFile} = require("fs");
-const {stat, readdir} = require("fs").promises;
-const {promisify} = require("util");
+const fs = require("fs");
+const util = require("util");
+const {stat} = require("fs").promises;
 
 // Convert fs.readFile into Promise version of same
 const readFileAsync = util.promisify(fs.readFile);
