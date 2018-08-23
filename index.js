@@ -24,3 +24,18 @@ async function notAllowed(request) {
         body: `Method ${request.method} not allowed.`
     }
 }
+
+const archivePath = "/archive";
+
+async function addToArchive(jsonPost) {
+    let archive = readArchive();
+    archive.posts = archive.posts.push(jsonPost);
+}
+
+async function readArchive() {
+
+}
+
+async function updateArchive(updatedArchive) {
+
+}
