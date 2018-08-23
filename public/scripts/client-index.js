@@ -21,7 +21,7 @@ function readMode() {
     setReadInterface(document.getElementById("real-estate"));
 }
 
-function writeMode(event) {
+function writeMode() {
     setPublishInterface(document.getElementById("real-estate"));
 }
 
