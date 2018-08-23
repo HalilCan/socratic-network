@@ -1,15 +1,20 @@
 //const logger = require('tracer').console();
 
 const http = require("http");
-let app = require('express')();
+let express = require('express');
+let app = express();
 let server = http.createServer(app);
 server.listen(8000);
 
 let io = require('socket.io')(server);
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/index.html', function (req, res) {
-    res.sendFile(__dirname + '/routes' + '/index.html');
+    res.sendFile(__dirname + '/public' + '/routes' + '/index.html');
 });
+
+//io.origins('*:*');
 
 io.on('connection', function (socket) {
     socket.emit('news', {hello: 'world'});
@@ -18,7 +23,7 @@ io.on('connection', function (socket) {
     });
     socket.on('get post by index', function (data) {
         let index = data.index;
-        let archive = readArchive().posts[index];
+        let archive = readArchive().then.posts[index];
         console.log(archive);
         socket.emit('post by index', {post: archive.posts[index]});
     });
@@ -49,7 +54,9 @@ async function readArchive() {
         else return {status: 404, body: "Archive file not found!"};
     }
     //return readStreamPromise(createReadStream(archivePath));
-    return await readFileAsync(archivePath);
+    let textArchive = await readFileAsync(archivePath);
+    console.log(`TextArchive: ${textArchive}`);
+    return JSON.parse(textArchive);
 }
 
 async function saveArchive(updatedArchive) {

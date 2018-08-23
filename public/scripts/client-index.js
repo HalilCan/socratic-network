@@ -1,4 +1,4 @@
-let socket = io('http://localhost');
+let socket = io('http://localhost:8000');
 socket.on('news', function (data) {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
@@ -11,6 +11,6 @@ function testArcSocket() {
 
 socket.on('post by index', function (data) {
     console.log('post by index caught');
-    document.querySelector("body").innerHTML = data.body;
+    document.querySelector("body").innerHTML += data.body;
 });
 
