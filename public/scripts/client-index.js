@@ -8,6 +8,7 @@ function requestPostCount() {
     socket.emit('get post count');
 }
 
+let postCount = 0;
 socket.on('post count response', (data) => {
     postCount = data.postCount;
 });
@@ -35,7 +36,7 @@ function formatPost(postObject) {
 function setReadInterface(element, ...options) {
     element.innerHTML = '';
     if (!options) {
-        let postCount = requestPostCount();
+        requestPostCount();
         for (let i = 0; i < postCount; i ++) {
             getPostByIndex(i);
         }
