@@ -35,11 +35,9 @@ function formatPost(postObject) {
 
 function setReadInterface(element, ...options) {
     element.innerHTML = '';
-    if (!options) {
-        requestPostCount();
-        for (let i = 0; i < postCount; i ++) {
-            getPostByIndex(i);
-        }
+    requestPostCount();
+    for (let i = 0; i < postCount; i++) {
+        getPostByIndex(i);
     }
 }
 
