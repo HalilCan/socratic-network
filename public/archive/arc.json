@@ -2,12 +2,12 @@
   "posts": [
     {
       "index": 0,
-      "subjects": [],
+      "subjects": ["subject1", "subject2"],
       "title": "TEST TITLE",
       "subtitle": "TEST subtitle",
       "author": "hcm",
       "body": "TEST BODY BAYBY",
-      "labels": []
+      "labels": ["label1","label2","label3"]
     },
     {
       "index": 1,
