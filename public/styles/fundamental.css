@@ -4,6 +4,8 @@
         margin-right: 10vw;
         margin-bottom: 40px;
         color: #222222;
+
+        font-family: Lora, serif;
     }
 
     .post-title {
@@ -15,7 +17,6 @@
     .post-subtitle {
         font-size: 18px;
         font-style: italic;
-        font-weight: bold;
     }
 
     .post-subject {
@@ -44,12 +45,14 @@
     }
 }
 
-@media only screen and (min-width: 901px) {
+@media only screen and (min-width: 900px) {
     .post {
         margin-left: 30vw;
         margin-right: 30vw;
         margin-bottom: 40px;
         color: #222222;
+
+        font-family: Lora, serif;
     }
 
     .post-title {
@@ -61,7 +64,6 @@
     .post-subtitle {
         font-size: 20px;
         font-style: italic;
-        font-weight: bold;
     }
 
     .post-subject {
