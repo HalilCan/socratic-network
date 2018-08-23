@@ -8,7 +8,7 @@ server.listen(8000);
 let io = require('socket.io')(server);
 
 app.get('/index.html', function (req, res) {
-    res.sendfile(__dirname + '/routes' + '/index.html');
+    res.sendFile(__dirname + '/routes' + '/index.html');
 });
 
 io.on('connection', function (socket) {

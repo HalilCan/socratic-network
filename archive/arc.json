@@ -1,8 +1,11 @@
 {
   "posts" : [{
     "index": 0,
+    "subjects" : []
     "title" : "TEST TITLE",
+    "subtitle" : "TEST subtitle",
     "author" : "hcm",
-    "body" : "TEST BODY BAYBY"
+    "body" : "TEST BODY BAYBY",
+    "labels" : []
   }]
 }
