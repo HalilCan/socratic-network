@@ -25,17 +25,36 @@ async function notAllowed(request) {
     }
 }
 
-const archivePath = "/archive";
+const archivePath = "/archive/arc.json";
+const {createReadStream} = require("fs");
+const {stat, readdir} = require("fs").promises;
 
 async function addToArchive(jsonPost) {
-    let archive = readArchive();
+    let archive = await readArchive();
     archive.posts = archive.posts.push(jsonPost);
+    return archive;
 }
 
 async function readArchive() {
+    let stats;
+
+    try {
+        stats = await stat(archivePath)
+    } catch (error) {
+        if (error.code !== "ENOENT") throw error;
+        else return {status: 404, body: "File not found"};
+    }
+
+    return pipeReadStream(createReadStream(path));
+}
+
+async function saveArchive(updatedArchive) {
 
 }
 
-async function updateArchive(updatedArchive) {
-
+function pipeReadStream(from) {
+    return new Promise((resolve, reject) => {
+        from.on("error", reject);
+        from.on("finish", resolve);
+    })
 }
