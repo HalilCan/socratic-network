@@ -44,13 +44,7 @@ getStuff().then(data => {
 })
 
 async function addToArchive(jsonPost) {
-    let archiveStream;
-    try {
-        archiveStream = await readArchive;
-    }
-    let file = await readArchive();
-    let archive;
-
+    let archive = await readArchive();
     archive.posts = archive.posts.push(jsonPost);
     return archive;
 }
