@@ -3,30 +3,40 @@
 const {createServer} = require("http");
 const methods = Object.create(null);
 
-createServer((request, response) => {
-    let handler = methods[request.method] || notAllowed;
+let app = require('http').createServer(handler);
+let io = require('socket.io')(app);
+let fs = require('fs');
 
-    handler(request)
-        .catch(error => {
-            if (error.status != null) return error;
-            return {body: String(error), status: 500};
-        })
-        .then(({body, status = 200, type = "text/plain"}) => {
-            response.writeHead(status, {"Content-Type": type});
-            if (body && body.pipe) body.pipe(response);
-            else response.end(body);
+app.listen(80);
+
+function handler(req, res) {
+    fs.readFile(__dirname + '/index.html',
+        function (err, data) {
+            if (err) {
+                res.writeHead(500);
+                return res.end('Error loading index.html');
+            }
+
+            res.writeHead(200);
+            res.end(data);
         });
-}).listen(8000);
-
-async function notAllowed(request) {
-    return {
-        status: 405,
-        body: `Method ${request.method} not allowed.`
-    }
 }
 
+io.on('connection', function (socket) {
+    socket.emit('news', {hello: 'world'});
+    socket.on('my other event', function (data) {
+        console.log(data);
+    });
+    socket.on('get post by index', function (data) {
+        let index = data.index;
+        let archive = readArchive().posts[index];
+
+        socket.emit('post by index', {post:})
+    });
+});
+
+
 const archivePath = "/archive/arc.json";
-const fs = require("fs");
 const util = require("util");
 const {stat} = require("fs").promises;
 
@@ -64,8 +74,3 @@ function readStreamPromise(from) {
     })
 }
 */
-
-methods.getPost = async function (request) {
-    let postIndex = request.postIndex;
-
-};

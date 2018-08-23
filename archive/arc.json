@@ -1,0 +1,8 @@
+{
+  "posts" : [{
+    "index": 0,
+    "title" : "TEST TITLE",
+    "author" : "hcm",
+    "body" : "TEST BODY BAYBY"
+  }]
+}
