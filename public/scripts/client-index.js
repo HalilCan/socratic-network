@@ -10,7 +10,6 @@ function testArcSocket() {
 }
 
 function writeMode(event) {
-    event.preventDefault();
     setPublishInterface(document.getElementById("real-estate"));
 }
 
@@ -24,12 +23,15 @@ function formatPost(postObject) {
 }
 
 function setPublishInterface(element) {
+    element.innerHTML = '';
+
     let pubContainer = document.createElement("div");
     pubContainer.id = "pub-container";
 
     let titleField = document.createElement("input");
     titleField.type = "text";
     titleField.name = "title";
+    titleField.value = "Title";
     titleField.className = "pub-field";
     titleField.id = "pub-title";
     pubContainer.appendChild(titleField);
@@ -37,6 +39,7 @@ function setPublishInterface(element) {
     let subTitleField = document.createElement("input");
     subTitleField.type = "text";
     subTitleField.name = "subTitle";
+    subTitleField.value = "Sub-title";
     subTitleField.className = "pub-field";
     subTitleField.id = "pub-subTitle";
     pubContainer.appendChild(subTitleField);
@@ -44,6 +47,7 @@ function setPublishInterface(element) {
     let subjectField = document.createElement("input");
     subjectField.type = "text";
     subjectField.name = "subject";
+    subjectField.value = "Subject";
     subjectField.className = "pub-field";
     subjectField.id = "pub-subject";
     pubContainer.appendChild(subjectField);
@@ -57,9 +61,18 @@ function setPublishInterface(element) {
     let labelsField = document.createElement("input");
     labelsField.type = "text";
     labelsField.name = "labels";
+    labelsField.value = "Labels";
     labelsField.className = "pub-field";
     labelsField.id = "pub-labels";
     pubContainer.appendChild(labelsField);
+
+    let passCodeField = document.createElement("input");
+    passCodeField.type = "text";
+    passCodeField.name = "passCode";
+    passCodeField.value = "Passcode";
+    passCodeField.className = "pub-field";
+    passCodeField.id = "pub-passCode";
+    pubContainer.appendChild(passCodeField);
 
     let publishButton = document.createElement("button");
     publishButton.innerText = "Publish";

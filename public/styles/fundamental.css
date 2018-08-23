@@ -40,7 +40,50 @@ ul.topnav li.right {float: right;}
     border-bottom: 2px solid #222;
     border-left: 1px solid transparent;
     border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
     border-radius: 100px;
+}
+
+#pub-container {
+    margin-left: 30vw;
+    margin-right: 30vw;
+    color: #222;
+    font-family: Lora, serif;
+
+    display: flex;
+    flex-direction: column;
+}
+
+#pub-container input{
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    padding: 5px 0 5px 0;
+    margin: 5px 0 5px 0;
+    border: none;
+    border-bottom: 1px solid #333333;
+
+    font-size: 16px;
+}
+
+#pub-container textarea {
+    margin: 20px 0 20px 0;
+    min-height: 500px;
+    max-width: 100%;
+    min-width: 100%;
+    border: 1px solid #d0d0d0;
+    background-color: #fbfbfb;
+
+    font-family: Lora, serif;
+    font-size: 16px;
+}
+
+#pub-container button {
+    margin: 20px 0 5px 0;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #d0d0d0;
+    border-radius: 2px;
 }
 
 @media only screen and (max-width: 900px) {
