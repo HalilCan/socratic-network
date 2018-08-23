@@ -4,9 +4,11 @@ socket.on('news', function (data) {
     socket.emit('my other event', {my: 'data'});
 });
 
+let testIndex = 0;
 function testArcSocket() {
     console.log('testArcSocket executed');
-    socket.emit('get post by index', {index: 0});
+    socket.emit('get post by index', {index: testIndex});
+    testIndex += 1;
 }
 
 function writeMode(event) {
