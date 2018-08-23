@@ -78,7 +78,7 @@ function setPublishInterface(element) {
     publishButton.innerText = "Publish";
     publishButton.className = "pub-button";
     publishButton.id = "publish-button";
-    publishButton.onclick = "publish()";
+    publishButton.onclick = publish;
     pubContainer.appendChild(publishButton);
 
     element.appendChild(pubContainer)
@@ -92,9 +92,13 @@ function publish() {
     let labelsField = document.getElementById("pub-labels");
     let passCodeField = document.getElementById("pub-passCode");
 
+    console.log('passCheck');
+
     //Sham passcode
     //TODO: change this or you just made a forum lol
     if (passCodeField.innerText !== "hcm") return -1;
+
+    console.log('passCheck passed');
 
     let obj = {
         index: 999,
