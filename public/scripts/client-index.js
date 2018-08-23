@@ -27,7 +27,6 @@ function writeMode(event) {
 }
 
 socket.on('post by index', function (data) {
-    console.log('post by index caught');
     document.getElementById("real-estate").innerHTML += formatPost(data.post);
 });
 
@@ -35,8 +34,14 @@ function formatPost(postObject) {
     return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> <div class = 'post-separator'></div> </div>";
 }
 
-function setReadInterface(element) {
-
+function setReadInterface(element, ...options) {
+    element.innerHTML = '';
+    if (!options) {
+        let postCount = requestPostCount();
+        for (let i = 0; i < postCount, i ++) {
+            getPostByIndex(i);
+        }
+    }
 }
 
 function setPublishInterface(element) {
