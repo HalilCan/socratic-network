@@ -64,3 +64,8 @@ function readStreamPromise(from) {
     })
 }
 */
+
+methods.getPost = async function (request) {
+    let postIndex = request.postIndex;
+
+};
