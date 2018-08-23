@@ -11,6 +11,9 @@ function testArcSocket() {
 
 socket.on('post by index', function (data) {
     console.log('post by index caught');
-    document.querySelector("body").innerHTML += data.post.body;
+    document.querySelector("body").innerHTML += formatPost(data.post);
 });
 
+function formatPost (postObject) {
+    return "<div class = 'post' id = `post" + postObject.index +"`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subject'>" + postObject.subjects.toString() + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-body'>" + postObject.body + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> </div>";
+}
