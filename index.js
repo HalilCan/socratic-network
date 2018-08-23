@@ -26,11 +26,31 @@ async function notAllowed(request) {
 }
 
 const archivePath = "/archive/arc.json";
-const {createReadStream} = require("fs");
+const {createReadStream, readFile} = require("fs");
 const {stat, readdir} = require("fs").promises;
+const {promisify} = require("util");
+
+// Convert fs.readFile into Promise version of same
+const readFileAsync = util.promisify(fs.readFile);
+
+async function getStuff() {
+
+}
+
+// Can't use `await` outside of an async function so you need to chain
+// with then()
+getStuff().then(data => {
+    console.log(data);
+})
 
 async function addToArchive(jsonPost) {
-    let archive = await readArchive();
+    let archiveStream;
+    try {
+        archiveStream = await readArchive;
+    }
+    let file = await readArchive();
+    let archive;
+
     archive.posts = archive.posts.push(jsonPost);
     return archive;
 }
@@ -42,10 +62,11 @@ async function readArchive() {
         stats = await stat(archivePath)
     } catch (error) {
         if (error.code !== "ENOENT") throw error;
-        else return {status: 404, body: "File not found"};
+        else return {status: 404, body: "Archive file not found!"};
     }
 
-    return readStreamPromise(createReadStream(path));
+    //return readStreamPromise(createReadStream(archivePath));
+    return await readFile(archivePath);
 }
 
 async function saveArchive(updatedArchive) {
