@@ -9,7 +9,8 @@ function testArcSocket() {
     socket.emit('get post by index', {index: 0});
 }
 
-function writeMode() {
+function writeMode(event) {
+    event.preventDefault();
     setPublishInterface(document.getElementById("real-estate"));
 }
 
@@ -47,8 +48,7 @@ function setPublishInterface(element) {
     subjectField.id = "pub-subject";
     pubContainer.appendChild(subjectField);
 
-    let essayField = document.createElement("input");
-    essayField.type = "text";
+    let essayField = document.createElement("textarea");
     essayField.name = "essay";
     essayField.className = "pub-field";
     essayField.id = "pub-essay";
@@ -60,6 +60,13 @@ function setPublishInterface(element) {
     labelsField.className = "pub-field";
     labelsField.id = "pub-labels";
     pubContainer.appendChild(labelsField);
+
+    let publishButton = document.createElement("button");
+    publishButton.innerText = "Publish";
+    publishButton.className = "pub-button";
+    publishButton.id = "publish-button";
+    publishButton.onclick = "publish()";
+    pubContainer.appendChild(publishButton);
 
     element.appendChild(pubContainer)
 }
