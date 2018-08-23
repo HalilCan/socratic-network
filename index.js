@@ -7,7 +7,7 @@ let app = require('http').createServer(handler);
 let io = require('socket.io')(app);
 let fs = require('fs');
 
-app.listen(80);
+app.listen(8000);
 
 function handler(req, res) {
     fs.readFile(__dirname + '/index.html',
