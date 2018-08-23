@@ -45,14 +45,14 @@ async function readArchive() {
         else return {status: 404, body: "File not found"};
     }
 
-    return pipeReadStream(createReadStream(path));
+    return readStreamPromise(createReadStream(path));
 }
 
 async function saveArchive(updatedArchive) {
 
 }
 
-function pipeReadStream(from) {
+function readStreamPromise(from) {
     return new Promise((resolve, reject) => {
         from.on("error", reject);
         from.on("finish", resolve);
