@@ -1,26 +1,15 @@
 //const logger = require('tracer').console();
 
-const {createServer} = require("http");
-const methods = Object.create(null);
+const http = require("http");
+let app = require('express')();
+let server = http.createServer(app);
+server.listen(8000);
 
-let app = require('http').createServer(handler);
-let io = require('socket.io')(app);
-let fs = require('fs');
+let io = require('socket.io')(server);
 
-app.listen(8000);
-
-function handler(req, res) {
-    fs.readFile(__dirname + '/index.html',
-        function (err, data) {
-            if (err) {
-                res.writeHead(500);
-                return res.end('Error loading index.html');
-            }
-
-            res.writeHead(200);
-            res.end(data);
-        });
-}
+app.get('/index.html', function (req, res) {
+    res.sendfile(__dirname + '/routes' + '/index.html');
+});
 
 io.on('connection', function (socket) {
     socket.emit('news', {hello: 'world'});
@@ -38,6 +27,7 @@ io.on('connection', function (socket) {
 
 const archivePath = "/archive/arc.json";
 const util = require("util");
+const fs = require("fs");
 const {stat} = require("fs").promises;
 
 // Convert fs.readFile into Promise version of same
