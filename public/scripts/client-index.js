@@ -16,6 +16,7 @@ socket.on('post count response', (data) => {
     postCount = data.postCount;
     isPCUpdated = true;
     pcUpdatedFunction();
+    pcUpdatedFunction = null;
 });
 
 function getPostByIndex(index) {
