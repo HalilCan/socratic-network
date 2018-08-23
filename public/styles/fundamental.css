@@ -3,6 +3,10 @@ body {
     background-color: #fef9ee;
 }
 
+#real-estate {
+    margin: 0;
+}
+
 ul.topnav {
     list-style-type: none;
     margin: 0;

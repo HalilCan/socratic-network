@@ -27,6 +27,9 @@ io.on('connection', function (socket) {
         console.log(post);
         socket.emit('post by index', {post: post});
     });
+    socket.on('write mode published', (data) => {
+
+    });
 });
 
 
