@@ -29,6 +29,7 @@ io.on('connection', function (socket) {
     });
     socket.on('write mode published', (data) => {
         console.log(JSON.stringify(data));
+        addToArchive(data);
     });
 });
 
@@ -42,10 +43,10 @@ const {stat} = require("fs").promises;
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
 
-async function addToArchive(jsonPost) {
-    let archive = await readArchive();
-    archive.posts = archive.posts.push(jsonPost);
-    return archive;
+function addToArchive(jsonPost) {
+    let archive = readArchiveSync();
+    archive.posts.push(jsonPost);
+    saveArchive(archive);
 }
 
 function readArchiveSync() {
@@ -74,8 +75,9 @@ async function readArchive() {
     return JSON.parse(textArchive);
 }
 
-async function saveArchive(updatedArchive) {
-    await writeFileAsync(archivePath, updatedArchive);
+function saveArchive(updatedArchive) {
+    console.log('got to saveArchive');
+    fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
 }
 
 /*
