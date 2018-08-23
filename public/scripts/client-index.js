@@ -11,6 +11,6 @@ function testArcSocket() {
 
 socket.on('post by index', function (data) {
     console.log('post by index caught');
-    document.querySelector("body").innerHTML += data.body;
+    document.querySelector("body").innerHTML += data.post.body;
 });
 

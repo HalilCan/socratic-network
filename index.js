@@ -24,6 +24,7 @@ io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
         let index = data.index;
         let post = readArchiveSync().posts[index];
+        console.log(post);
         socket.emit('post by index', {post: post});
     });
 });
@@ -47,7 +48,7 @@ async function addToArchive(jsonPost) {
 function readArchiveSync() {
     stat(archivePath).then((err) => {
         if (err) {
-            if (error.code !== "ENOENT") throw error;
+            if (err.code !== "ENOENT") return {status: 500, body: err};
             else return {status: 404, body: "Archive file not found!"};
         }
     });
