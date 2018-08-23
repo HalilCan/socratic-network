@@ -15,5 +15,5 @@ socket.on('post by index', function (data) {
 });
 
 function formatPost (postObject) {
-    return "<div class = 'post' id = `post" + postObject.index +"`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subject'>" + postObject.subjects.toString() + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-body'>" + postObject.body + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> </div>";
+    return "<div class = 'post' id = `post" + postObject.index +"`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + postObject.body + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> </div>";
 }
