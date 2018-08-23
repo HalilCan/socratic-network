@@ -23,7 +23,7 @@ io.on('connection', function (socket) {
     });
     socket.on('get post by index', function (data) {
         let index = data.index;
-        let archive = readArchive().then.posts[index];
+        let archive = readArchiveSync().posts[index];
         console.log(archive);
         socket.emit('post by index', {post: archive.posts[index]});
     });
@@ -45,7 +45,18 @@ async function addToArchive(jsonPost) {
     return archive;
 }
 
+function readArchiveSync() {
+    stat(archivePath).then(function (err) {
+        if (err) {
+            if (error.code !== "ENOENT") throw error;
+            else return {status: 404, body: "Archive file not found!"};
+        }
+    });
+    return JSON.parse(fs.readFile(archivePath));
+}
+
 async function readArchive() {
+    // lots of problems with this, doesn't mesh well with sync IO
     let stats;
     try {
         stats = await stat(archivePath);
