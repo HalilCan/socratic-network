@@ -10,7 +10,7 @@ function testArcSocket() {
 }
 
 function writeMode() {
-    document.getElementById("real-estate").innerHTML = getPublishInterface();
+    setPublishInterface(document.getElementById("real-estate"));
 }
 
 socket.on('post by index', function (data) {
@@ -22,8 +22,10 @@ function formatPost(postObject) {
     return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> <div class = 'post-separator'></div> </div>";
 }
 
-function getPublishInterface() {
-
+function setPublishInterface(element) {
+    let pubContainer = document.createElement("div");
+    pubContainer.id = "pub-container";
+    let
 }
 
 function getformattedBody(body) {
