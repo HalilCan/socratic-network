@@ -86,10 +86,13 @@ ul.topnav li.right {float: right;}
     border-radius: 2px;
 }
 
-#post-date {
-    position: absolute;
-    left: -50px;
-    top: 0px;
+.post-date {
+    position: relative;
+    left: -110px;
+    height: 20px;
+    width: 100px;
+    top: 0;
+    margin-bottom: -24px;
     text-align: right;
     overflow: visible;
 }
