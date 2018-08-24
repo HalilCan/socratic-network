@@ -34,6 +34,9 @@ io.on('connection', function (socket) {
     socket.on('get post count', () => {
         socket.emit('post count response', {postCount: readArchiveSync().posts.length});
     });
+    socket.on('get archive backup', () => {
+        socket.emit('archive backup', {backup: readArchiveSync()});
+    });
 });
 
 
