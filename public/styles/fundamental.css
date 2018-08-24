@@ -86,6 +86,12 @@ ul.topnav li.right {float: right;}
     border-radius: 2px;
 }
 
+#post-date {
+    margin-right: -50px;
+    text-align: right;
+    overflow: visible;
+}
+
 @media only screen and (max-width: 900px) {
     .post {
         margin-left: 10vw;
