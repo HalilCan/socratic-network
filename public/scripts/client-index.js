@@ -1,6 +1,5 @@
 let socket = io('http://localhost:8000');
 socket.on('news', function (data) {
-    console.log(data);
     socket.emit('my other event', {my: 'data'});
 });
 
@@ -12,7 +11,6 @@ let postCount = 0;
 let isPCUpdated = false;
 let pcUpdatedFunction;
 socket.on('post count response', (data) => {
-    console.log(`postCount response: ${data.postCount}`);
     postCount = data.postCount;
     isPCUpdated = true;
     pcUpdatedFunction();
@@ -45,7 +43,6 @@ function setReadInterface(element, ...options) {
     if (!isPCUpdated) {
         pcUpdatedFunction = () => {
             for (let i = 0; i < postCount; i++) {
-                console.log(i);
                 getPostByIndex(i);
             }
             isPCUpdated = false;
@@ -123,15 +120,12 @@ function publish() {
     let labelsField = document.getElementById("pub-labels");
     let passCodeField = document.getElementById("pub-passCode");
 
-    console.log('passCheck');
-
     //Sham passcode
     //TODO: change this or you just made a forum lol
     if (passCodeField.value !== "hcm") {
         console.log(passCodeField.value);
         return -1;
     }
-    console.log('passCheck passed');
 
     let obj = {
         index: 999,
