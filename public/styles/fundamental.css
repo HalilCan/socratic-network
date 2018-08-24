@@ -87,6 +87,7 @@ ul.topnav li.right {float: right;}
 }
 
 #post-date {
+    display: inline;
     margin-right: -50px;
     text-align: right;
     overflow: visible;
@@ -99,10 +100,12 @@ ul.topnav li.right {float: right;}
         margin-bottom: 40px;
         color: #222222;
 
+        overflow: visible;
         font-family: Lora, serif;
     }
 
     .post-title {
+        display: inline-block;
         font-size: 24px;
         font-weight: bolder;
         margin-bottom: 5px;
@@ -151,10 +154,12 @@ ul.topnav li.right {float: right;}
         margin-bottom: 40px;
         color: #222222;
 
+        overflow: visible;
         font-family: Lora, serif;
     }
 
     .post-title {
+        display: inline-block;
         font-size: 32px;
         font-weight: bolder;
         margin-bottom: 10px;
