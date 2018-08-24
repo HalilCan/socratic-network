@@ -158,6 +158,7 @@ function publish() {
     let bodyField = document.getElementById("pub-essay");
     let labelsField = document.getElementById("pub-labels");
     let passCodeField = document.getElementById("pub-passCode");
+    let date = getCurrentDate();
 
     //Sham passcode
     //TODO: change this or you just made a forum lol
@@ -168,6 +169,7 @@ function publish() {
 
     let obj = {
         index: 999,
+        "date": date,
         "subjects": subjectField.value.split(" "),
         "title": titleField.value,
         "subtitle": subTitleField.value,
