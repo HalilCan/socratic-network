@@ -17,6 +17,45 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction = null;
 });
 
+function requestArchiveBackup() {
+    socket.emit('get archive backup');
+}
+
+socket.on('archive backup', (data) => {
+    let date = date.now();
+    downloadText(JSON.stringify(data.backup));
+});
+
+function getCurrentDate() {
+    let today = new Date();
+    let dd = today.getDate();
+    let mm = today.getMonth()+1; //January is 0!
+    let yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd = '0'+dd
+    }
+
+    if(mm<10) {
+        mm = '0'+mm
+    }
+
+    today = mm + '/' + dd + '/' + yyyy;
+    document.write(today);
+}
+
+function downloadText(filename, string) {
+    let element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(string));
+
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+    document.body.removeChild(element);
+}
+
 function getPostByIndex(index) {
     socket.emit('get post by index', {index: index});
 }
