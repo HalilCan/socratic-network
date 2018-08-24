@@ -48,6 +48,7 @@ function setReadInterface(element, ...options) {
                 console.log(i);
                 getPostByIndex(i);
             }
+            isPCUpdated = false;
         }
     }
 }
