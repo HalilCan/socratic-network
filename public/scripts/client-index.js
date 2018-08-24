@@ -22,8 +22,8 @@ function requestArchiveBackup() {
 }
 
 socket.on('archive backup', (data) => {
-    let date = date.now();
-    downloadText(JSON.stringify(data.backup));
+    let date = getCurrentDate();
+    downloadText(`SN backup-${date}`, JSON.stringify(data.backup));
 });
 
 function getCurrentDate() {
@@ -41,7 +41,7 @@ function getCurrentDate() {
     }
 
     today = mm + '/' + dd + '/' + yyyy;
-    document.write(today);
+    return(today);
 }
 
 function downloadText(filename, string) {
