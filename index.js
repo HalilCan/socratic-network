@@ -17,14 +17,9 @@ app.get('/index.html', function (req, res) {
 //io.origins('*:*');
 
 io.on('connection', function (socket) {
-    socket.emit('news', {hello: 'world'});
-    socket.on('my other event', function (data) {
-        console.log(data);
-    });
     socket.on('get post by index', function (data) {
         let index = data.index;
         let post = readArchiveSync().posts[index] || readArchiveSync().posts[0];
-        console.log(post);
         socket.emit('post by index', {post: post});
     });
     socket.on('write mode published', (data) => {
@@ -76,14 +71,11 @@ async function readArchive() {
         if (error.code !== "ENOENT") throw error;
         else return {status: 404, body: "Archive file not found!"};
     }
-    //return readStreamPromise(createReadStream(archivePath));
     let textArchive = await readFileAsync(archivePath);
-    console.log(`TextArchive: ${textArchive}`);
     return JSON.parse(textArchive);
 }
 
 function saveArchive(updatedArchive) {
-    console.log('got to saveArchive');
     fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
 }
 
