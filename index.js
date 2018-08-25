@@ -33,7 +33,7 @@ io.on('connection', function (socket) {
         socket.emit('archive backup', {backup: readArchiveSync()});
     });
     socket.on('get posts by label', (data) => {
-        socket.emit('posts by label response', {posts: getPostsByLabel(data.label)});
+        socket.emit('posts by label response', {posts: getPostsByLabel(JSON.stringify(data.label))});
     });
 });
 
@@ -55,12 +55,13 @@ function addToArchive(jsonPost) {
 }
 
 function getPostsByLabel(label) {
-    label = JSON.stringify(label);
     console.log(`get posts by label: ${label}`);
     let archive = readArchiveSync();
-    let posts;
+    let posts = [];
     for (let post of archive.posts) {
-        if (post.labels.includes(label)) { // noinspection JSUnusedAssignment
+        console.log(JSON.stringify(post.labels));
+        console.log(`this includes ${label}: ${JSON.stringify(post.labels).includes(label)}`);
+        if (JSON.stringify(post.labels).includes(label)) { // noinspection JSUnusedAssignment
             posts.push(post);
         }
     }
