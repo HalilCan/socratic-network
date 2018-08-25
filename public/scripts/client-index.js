@@ -87,10 +87,47 @@ function addPostToDisplay(unformattedPost) {
 }
 
 function formatPost(postObject) {
+    let post = document.createElement("div");
+    post.className = "post";
+    post.id = "post-" + postObject.index;
+
+    let postDate = document.createElement("div");
+    postDate.className = "post-date";
     let formattedDate = postObject.date.split("_").join("/");
-    let post =
+    postDate.innerHTML = formattedDate;
+    post.appendChild(postDate);
+
+    let postTitle = document.createElement("div");
+    postTitle.className = "post-title";
+    postTitle.innerHTML = postObject.title;
+    post.appendChild(postTitle);
+
+    let postSubTitle = document.createElement("div");
+    postSubTitle.className = "post-subtitle";
+    postSubTitle.innerHTML = postObject.subtitle;
+    post.appendChild(postSubTitle);
+
+    let postSubject = document.createElement("div");
+    postSubject.className = "post-subject";
+    postSubject.innerHTML = postObject.subjects.join(", ");
+    post.appendChild(postSubject);
+
+    let postBody = document.createElement("div");
+    postBody.className = "post-body";
+    postBody.innerHTML = getFormattedBody(postObject.body);
+    post.appendChild(postBody);
+
+    let postLabels = document.createElement("div");
+    postLabels.className = "post-labels";
+    postLabels.innerHTML = getFormattedLabels(postObject.labels);
+    post.appendChild(postLabels);
+
+    let postSeparator = document.createElement("div");
+    postSeparator.className = "post-separator";
+    post.appendChild(postSeparator);
+
     //TODO: labels need to be separate <span>s
-    return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + getFormattedLabels(postObject.labels) + "</div> <div class = 'post-separator'></div> </div>";
+    //return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + getFormattedLabels(postObject.labels) + "</div> <div class = 'post-separator'></div> </div>";
 }
 
 function getFormattedLabels(labelArray) {
