@@ -65,16 +65,27 @@ socket.on('post by index', function (data) {
 });
 
 function requestPostsByLabel(label) {
-    console.log(`rpbl label: ${label}`);
     socket.emit('get posts by label', {label: label});
 }
 
+function requestPostsByDescriptor(descriptorType, descriptorName) {
+    socket.emit('get posts by descriptor', {type: descriptorType, name: descriptorName});
+}
+
 socket.on('posts by label response', (data) => {
-    if (!data.posts) console.log(JSON.stringify(data));
+    if (!data.posts) return;
     document.getElementById("real-estate").innerHTML = '';
     for (let post of data.posts) {
         addPostToDisplay(post)
     } //data.posts is an array anyway
+});
+
+socket.on('posts by descriptor response', (data) => {
+    if (!data.posts) return;
+    document.getElementById("real-estate").innerHTML = '';
+    for (let post of data.posts) {
+        addPostToDisplay(post)
+    }
 });
 
 function readMode() {
@@ -112,7 +123,7 @@ function formatPost(postObject) {
 
     let postSubject = document.createElement("div");
     postSubject.className = "post-subject";
-    postSubject.innerHTML = postObject.subjects.join(", ");
+    postSubject.appendChild(getFormattedSubjects(postObject.subjects)_;
     post.appendChild(postSubject);
 
     let postBody = document.createElement("div");
@@ -146,6 +157,21 @@ function getFormattedLabels(labelArray) {
         };
         labelSpan.innerText = label;
         formattedDiv.appendChild(labelSpan);
+    }
+    return formattedDiv;
+}
+
+function getFormattedSubjects(subjectArray) {
+    let formattedDiv = document.createElement("div");
+    for (let subject of subjectArray) {
+        let subjectSpan = document.createElement("a");
+        subjectSpan.className = "subject-single";
+        subjectSpan.href = "javascript:;";
+        subjectSpan.onclick = function (event) {
+            requestPostsByDescriptor('subjects', subject);
+        };
+        subjectSpan.innerText = subject;
+        formattedDiv.appendChild(subjectSpan);
     }
     return formattedDiv;
 }

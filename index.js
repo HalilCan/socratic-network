@@ -35,6 +35,9 @@ io.on('connection', function (socket) {
     socket.on('get posts by label', (data) => {
         socket.emit('posts by label response', {posts: getPostsByLabel(JSON.stringify(data.label))});
     });
+    socket.on('get posts by descriptor', (data) => {
+        socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.descriptorType), JSON.stringify(data.descriptorName))});
+    });
 });
 
 
@@ -55,13 +58,21 @@ function addToArchive(jsonPost) {
 }
 
 function getPostsByLabel(label) {
-    console.log(`get posts by label: ${label}`);
     let archive = readArchiveSync();
     let posts = [];
     for (let post of archive.posts) {
-        console.log(JSON.stringify(post.labels));
-        console.log(`this includes ${label}: ${JSON.stringify(post.labels).includes(label)}`);
         if (JSON.stringify(post.labels).includes(label)) { // noinspection JSUnusedAssignment
+            posts.push(post);
+        }
+    }
+    return posts;
+}
+
+function getPostsByDescriptor(type, name) {
+    let archive = readArchiveSync();
+    let posts = [];
+    for (let post of archive.posts) {
+        if (JSON.stringify(post.type).includes(name)) { // noinspection JSUnusedAssignment
             posts.push(post);
         }
     }
