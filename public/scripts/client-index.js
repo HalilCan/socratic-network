@@ -71,7 +71,7 @@ function requestPostsByLabel(label) {
 socket.on('posts by label response', (data) => {
     for (let post of data.posts) {
         addPostToDisplay(post)
-    }
+    } //data.posts is an array anyway
 });
 
 function readMode() {
