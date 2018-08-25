@@ -113,6 +113,10 @@ ul.topnav li.right {
     overflow: visible;
 }
 
+.label-single {
+    margin-right : 5px;
+}
+
 @media only screen and (max-width: 900px) {
     .post {
         margin-left: 10vw;

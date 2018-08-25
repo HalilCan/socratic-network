@@ -57,7 +57,7 @@ function addToArchive(jsonPost) {
 function getPostsByLabel(label) {
     let archive = readArchiveSync();
     let posts;
-    for (let post of posts) {
+    for (let post of archive.posts) {
         if (post.labels.includes(label)) posts.push(post);
     }
     return posts;

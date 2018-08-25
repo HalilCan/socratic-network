@@ -69,6 +69,8 @@ function requestPostsByLabel(label) {
 }
 
 socket.on('posts by label response', (data) => {
+    if (!data.posts) return;
+    document.getElementById("real-estate").innerHTML = '';
     for (let post of data.posts) {
         addPostToDisplay(post)
     } //data.posts is an array anyway
@@ -119,7 +121,7 @@ function formatPost(postObject) {
 
     let postLabels = document.createElement("div");
     postLabels.className = "post-labels";
-    postLabels.innerHTML = getFormattedLabels(postObject.labels);
+    postLabels.appendChild(getFormattedLabels(postObject.labels));
     post.appendChild(postLabels);
 
     let postSeparator = document.createElement("div");
@@ -135,7 +137,9 @@ function formatPost(postObject) {
 function getFormattedLabels(labelArray) {
     let formattedDiv = document.createElement("div");
     for (let label of labelArray) {
-        let labelSpan = document.createElement("span");
+        let labelSpan = document.createElement("a");
+        labelSpan.className = "label-single";
+        labelSpan.href = "javascript:;";
         labelSpan.onclick = requestPostsByLabel;
         labelSpan.innerText = label;
         formattedDiv.appendChild(labelSpan);
