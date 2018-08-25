@@ -83,7 +83,7 @@ function writeMode() {
 }
 
 function addPostToDisplay(unformattedPost) {
-    document.getElementById("real-estate").innerHTML += formatPost(unformattedPost);
+    document.getElementById("real-estate").appendChild(formatPost(unformattedPost));
 }
 
 function formatPost(postObject) {
