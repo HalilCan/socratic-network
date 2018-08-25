@@ -55,10 +55,14 @@ function addToArchive(jsonPost) {
 }
 
 function getPostsByLabel(label) {
+    label = JSON.stringify(label);
+    console.log(`get posts by label: ${label}`);
     let archive = readArchiveSync();
     let posts;
     for (let post of archive.posts) {
-        if (post.labels.includes(label)) posts.push(post);
+        if (post.labels.includes(label)) { // noinspection JSUnusedAssignment
+            posts.push(post);
+        }
     }
     return posts;
 }

@@ -65,11 +65,12 @@ socket.on('post by index', function (data) {
 });
 
 function requestPostsByLabel(label) {
+    console.log(`rpbl label: ${label}`);
     socket.emit('get posts by label', {label: label});
 }
 
 socket.on('posts by label response', (data) => {
-    if (!data.posts) return;
+    if (!data.posts) console.log(JSON.stringify(data));
     document.getElementById("real-estate").innerHTML = '';
     for (let post of data.posts) {
         addPostToDisplay(post)
@@ -140,7 +141,9 @@ function getFormattedLabels(labelArray) {
         let labelSpan = document.createElement("a");
         labelSpan.className = "label-single";
         labelSpan.href = "javascript:;";
-        labelSpan.onclick = requestPostsByLabel;
+        labelSpan.onclick = function (event) {
+            requestPostsByLabel(label)
+        };
         labelSpan.innerText = label;
         formattedDiv.appendChild(labelSpan);
     }
