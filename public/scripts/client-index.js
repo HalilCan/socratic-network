@@ -88,15 +88,16 @@ function addPostToDisplay(unformattedPost) {
 
 function formatPost(postObject) {
     let formattedDate = postObject.date.split("_").join("/");
+    let post =
     //TODO: labels need to be separate <span>s
-    return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.join(', ') + "</div> <div class = 'post-separator'></div> </div>";
+    return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + getFormattedLabels(postObject.labels) + "</div> <div class = 'post-separator'></div> </div>";
 }
 
 function getFormattedLabels(labelArray) {
     let formattedDiv = document.createElement("div");
     for (let label of labelArray) {
         let labelSpan = document.createElement("span");
-        labelSpan.onclick = requestPostsByLabel(label);
+        labelSpan.onclick = requestPostsByLabel;
         labelSpan.innerText = label;
         formattedDiv.appendChild(labelSpan);
     }
