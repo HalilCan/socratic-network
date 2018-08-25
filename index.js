@@ -72,11 +72,10 @@ function getPostsByDescriptor(type, name) {
     console.log(`get by descriptor request type: ${type}, name: ${name}`);
     let archive = readArchiveSync();
     let posts = [];
+    type = JSON.stringify(type).slice(3, -3);
+    //Works with subject to get correct string!
     for (let post of archive.posts) {
-        type = JSON.stringify(type);
-        //type = "subjects";
-        console.log(JSON.stringify(post[type]));
-        if (JSON.stringify(post.type).includes(name)) { // noinspection JSUnusedAssignment
+        if (JSON.stringify(post[type]).includes(name)) { // noinspection JSUnusedAssignment
             posts.push(post);
         }
     }
