@@ -126,6 +126,8 @@ function formatPost(postObject) {
     postSeparator.className = "post-separator";
     post.appendChild(postSeparator);
 
+    return post;
+
     //TODO: labels need to be separate <span>s
     //return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + getFormattedLabels(postObject.labels) + "</div> <div class = 'post-separator'></div> </div>";
 }
@@ -245,7 +247,7 @@ function publish() {
     socket.emit('write mode published', obj);
 }
 
-function getformattedBody(body) {
+function getFormattedBody(body) {
     let bodyArray = body.split('\n');
     let formattedBody = "";
     for (let paragraph of bodyArray) {
