@@ -36,7 +36,7 @@ io.on('connection', function (socket) {
         socket.emit('posts by label response', {posts: getPostsByLabel(JSON.stringify(data.label))});
     });
     socket.on('get posts by descriptor', (data) => {
-        socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.descriptorType), JSON.stringify(data.descriptorName))});
+        socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
 });
 
@@ -69,6 +69,7 @@ function getPostsByLabel(label) {
 }
 
 function getPostsByDescriptor(type, name) {
+    console.log(`get by descriptor request type: ${type}, name: ${name}`);
     let archive = readArchiveSync();
     let posts = [];
     for (let post of archive.posts) {
