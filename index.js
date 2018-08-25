@@ -32,6 +32,9 @@ io.on('connection', function (socket) {
     socket.on('get archive backup', () => {
         socket.emit('archive backup', {backup: readArchiveSync()});
     });
+    socket.on('get posts by label', (data) => {
+        socket.emit('posts by label response', {posts: getPostsByLabel(data.label)});
+    });
 });
 
 
@@ -49,6 +52,15 @@ function addToArchive(jsonPost) {
     jsonPost.index = readArchiveSync().posts.length;
     archive.posts.push(jsonPost);
     saveArchive(archive);
+}
+
+function getPostsByLabel(label) {
+    let archive = readArchiveSync();
+    let posts;
+    for (let post of posts) {
+        if (post.labels.includes(label)) posts.push(post);
+    }
+    return posts;
 }
 
 function readArchiveSync() {

@@ -17,6 +17,10 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction = null;
 });
 
+socket.on('posts by label response', (data) => {
+
+});
+
 function requestArchiveBackup() {
     socket.emit('get archive backup');
 }
@@ -29,19 +33,19 @@ socket.on('archive backup', (data) => {
 function getCurrentDate() {
     let today = new Date();
     let dd = today.getDate();
-    let mm = today.getMonth()+1; //January is 0!
+    let mm = today.getMonth() + 1; //January is 0!
     let yyyy = today.getFullYear();
 
-    if(dd<10) {
-        dd = '0'+dd
+    if (dd < 10) {
+        dd = '0' + dd
     }
 
-    if(mm<10) {
-        mm = '0'+mm
+    if (mm < 10) {
+        mm = '0' + mm
     }
 
     today = mm + '/' + dd + '/' + yyyy;
-    return(today);
+    return (today);
 }
 
 function downloadText(filename, string) {
@@ -60,6 +64,10 @@ function getPostByIndex(index) {
     socket.emit('get post by index', {index: index});
 }
 
+function requestPostsByLabel(label) {
+    socket.emit('get posts by label', {label: label});
+}
+
 function readMode() {
     setReadInterface(document.getElementById("real-estate"));
 }
@@ -69,8 +77,12 @@ function writeMode() {
 }
 
 socket.on('post by index', function (data) {
-    document.getElementById("real-estate").innerHTML += formatPost(data.post);
+    addPostToDisplay(data.post);
 });
+
+function addPostToDisplay(unformattedPost) {
+    document.getElementById("real-estate").innerHTML += formatPost(unformattedPost);
+}
 
 function formatPost(postObject) {
     let formattedDate = postObject.date.split("_").join("/");
