@@ -88,6 +88,7 @@ function addPostToDisplay(unformattedPost) {
 
 function formatPost(postObject) {
     let formattedDate = postObject.date.split("_").join("/");
+    //TODO: labels need to be separate <span>s
     return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.join(', ') + "</div> <div class = 'post-separator'></div> </div>";
 }
 
