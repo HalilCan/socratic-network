@@ -17,10 +17,6 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction = null;
 });
 
-socket.on('posts by label response', (data) => {
-
-});
-
 function requestArchiveBackup() {
     socket.emit('get archive backup');
 }
@@ -64,9 +60,17 @@ function getPostByIndex(index) {
     socket.emit('get post by index', {index: index});
 }
 
+socket.on('post by index', function (data) {
+    addPostToDisplay(data.post);
+});
+
 function requestPostsByLabel(label) {
     socket.emit('get posts by label', {label: label});
 }
+
+socket.on('posts by label response', (data) => {
+    addPostToDisplay(data.post);
+});
 
 function readMode() {
     setReadInterface(document.getElementById("real-estate"));
@@ -75,10 +79,6 @@ function readMode() {
 function writeMode() {
     setPublishInterface(document.getElementById("real-estate"));
 }
-
-socket.on('post by index', function (data) {
-    addPostToDisplay(data.post);
-});
 
 function addPostToDisplay(unformattedPost) {
     document.getElementById("real-estate").innerHTML += formatPost(unformattedPost);
