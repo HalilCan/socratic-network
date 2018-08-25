@@ -73,6 +73,9 @@ function getPostsByDescriptor(type, name) {
     let archive = readArchiveSync();
     let posts = [];
     for (let post of archive.posts) {
+        type = JSON.stringify(type);
+        //type = "subjects";
+        console.log(JSON.stringify(post[type]));
         if (JSON.stringify(post.type).includes(name)) { // noinspection JSUnusedAssignment
             posts.push(post);
         }
