@@ -115,6 +115,9 @@ ul.topnav li.right {
 
 .label-single {
     margin-right : 5px;
+    text-decoration: underline;
+    color: #444;
+    font-style: italic;
 }
 
 @media only screen and (max-width: 900px) {
@@ -141,7 +144,7 @@ ul.topnav li.right {
     }
 
     .post-subject {
-        font-size: 12px;
+        font-size: 14px;
         color: #2d85ff;
         margin-bottom: 10px;
     }
@@ -197,7 +200,7 @@ ul.topnav li.right {
     }
 
     .post-subject {
-        font-size: 12px;
+        font-size: 14px;
         color: #2d85ff;
         margin-bottom: 20px;
     }
