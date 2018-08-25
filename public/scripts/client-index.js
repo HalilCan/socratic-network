@@ -123,7 +123,7 @@ function formatPost(postObject) {
 
     let postSubject = document.createElement("div");
     postSubject.className = "post-subject";
-    postSubject.appendChild(getFormattedSubjects(postObject.subjects)_;
+    postSubject.appendChild(getFormattedSubjects(postObject.subjects));
     post.appendChild(postSubject);
 
     let postBody = document.createElement("div");
