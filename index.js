@@ -69,10 +69,10 @@ function getPostsByLabel(label) {
 }
 
 function getPostsByDescriptor(type, name) {
-    console.log(`get by descriptor request type: ${type}, name: ${name}`);
     let archive = readArchiveSync();
     let posts = [];
     type = JSON.stringify(type).slice(3, -3);
+    console.log(`get by descriptor request type: ${type}, name: ${name}`);
     //Works with subject to get correct string!
     for (let post of archive.posts) {
         if (JSON.stringify(post[type]).includes(name)) { // noinspection JSUnusedAssignment
