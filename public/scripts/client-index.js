@@ -88,7 +88,7 @@ function addPostToDisplay(unformattedPost) {
 
 function formatPost(postObject) {
     let formattedDate = postObject.date.split("_").join("/");
-    return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.toString() + "</div> <div class = 'post-separator'></div> </div>";
+    return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.join(', ') + "</div> <div class = 'post-separator'></div> </div>";
 }
 
 function setReadInterface(element, ...options) {
@@ -190,7 +190,7 @@ function publish() {
         "subtitle": subTitleField.value,
         "author": "hcm",
         "body": bodyField.value,
-        "labels": labelsField.value.split(" ")
+        "labels": labelsField.value.split(", ")
     };
     socket.emit('write mode published', obj);
 }
