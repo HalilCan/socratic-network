@@ -92,6 +92,17 @@ function formatPost(postObject) {
     return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + postObject.labels.join(', ') + "</div> <div class = 'post-separator'></div> </div>";
 }
 
+function getFormattedLabels(labelArray) {
+    let formattedDiv = document.createElement("div");
+    for (let label of labelArray) {
+        let labelSpan = document.createElement("span");
+        labelSpan.onclick = requestPostsByLabel(label);
+        labelSpan.innerText = label;
+        formattedDiv.appendChild(labelSpan);
+    }
+    return formattedDiv;
+}
+
 function setReadInterface(element, ...options) {
     element.innerHTML = '';
     requestPostCount();
