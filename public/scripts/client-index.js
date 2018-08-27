@@ -1,11 +1,28 @@
 let socket = io('http://localhost:8000');
-socket.on('news', function (data) {
-    socket.emit('my other event', {my: 'data'});
-});
 
 function requestPostCount() {
     socket.emit('get post count');
 }
+
+window.onload = () => {
+    let rightContainer = document.getElementById("navbar-right");
+
+    let searchField = document.createElement("input");
+    searchField.type = "text";
+    searchField.name = "search";
+    searchField.value = "Search";
+    searchField.className = "read-field";
+    searchField.id = "read-search";
+    rightContainer.appendChild(searchField);
+
+    let searchButton = document.createElement("button");
+    searchButton.name = "search-button";
+    searchButton.className = "read-button";
+    searchButton.id = "read-search";
+    rightContainer.appendChild(searchButton);
+
+    searchButton.onclick =
+};
 
 let postCount = 0;
 let isPCUpdated = false;
