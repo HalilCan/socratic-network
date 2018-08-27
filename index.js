@@ -94,12 +94,13 @@ function getPostsBySearchQuery (query) {
     return posts;
 }
 
-function postContainsDescriptor (post, query) {
+function postContainsQuery (post, query) {
     for (let property in post) {
         if (post.hasOwnProperty(property)) {
-            if (post[property].)
+            if (post[property].includes(query)) return true;
         }
     }
+    return false;
 }
 
 function readArchiveSync() {
