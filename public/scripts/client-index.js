@@ -21,7 +21,7 @@ window.onload = () => {
     searchButton.id = "read-search";
     rightContainer.appendChild(searchButton);
 
-    searchButton.onclick =
+    searchButton.onclick = () => {search(searchField)};
 };
 
 let postCount = 0;
@@ -60,6 +60,20 @@ function getCurrentDate() {
     today = mm + '/' + dd + '/' + yyyy;
     return (today);
 }
+
+function search(searchField) {
+    let query = searchField.value;
+    socket.emit('get posts by search query', {query: query});
+}
+
+socket.on('posts by search query response', (data) => {
+    if (!data.posts) return;
+    document.getElementById("real-estate").innerHTML = '';
+    for (let post of data.posts) {
+        addPostToDisplay(post)
+    } //data.posts is an array anyway
+});
+
 
 function downloadText(filename, string) {
     let element = document.createElement('a');
