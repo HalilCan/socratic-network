@@ -85,19 +85,21 @@ function getPostsByDescriptor(type, name) {
     return posts;
 }
 
-function getPostsBySearchQuery (query) {
+function getPostsBySearchQuery(query) {
     let archive = readArchiveSync();
     let posts = [];
     for (let post of archive.posts) {
-        if (postContainsQuery (post, query)) posts.push(post);
+        if (postContainsQuery(post, query)) posts.push(post);
     }
     return posts;
 }
 
-function postContainsQuery (post, query) {
+function postContainsQuery(post, query) {
     for (let property in post) {
         if (post.hasOwnProperty(property)) {
-            if (post[property].includes(query)) return true;
+            if (typeof post[property].includes() === 'function') {
+                if (post[property].includes(query)) return true;
+            }
         }
     }
     return false;
