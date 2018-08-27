@@ -38,6 +38,9 @@ io.on('connection', function (socket) {
     socket.on('get posts by descriptor', (data) => {
         socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
+    socket.on('get posts by search query', (data) => {
+        socket.emit('posts by search query response', {posts: getPostsBySearchQuery(JSON.stringify(data.query))});
+    });
 });
 
 
@@ -80,6 +83,23 @@ function getPostsByDescriptor(type, name) {
         }
     }
     return posts;
+}
+
+function getPostsBySearchQuery (query) {
+    let archive = readArchiveSync();
+    let posts = [];
+    for (let post of archive.posts) {
+        if (postContainsQuery (post, query)) posts.push(post);
+    }
+    return posts;
+}
+
+function postContainsDescriptor (post, query) {
+    for (let property in post) {
+        if (post.hasOwnProperty(property)) {
+            if (post[property].)
+        }
+    }
 }
 
 function readArchiveSync() {
