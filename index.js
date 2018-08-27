@@ -109,12 +109,3 @@ async function readArchive() {
 function saveArchive(updatedArchive) {
     fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
 }
-
-/*
-function readStreamPromise(from) {
-    return new Promise((resolve, reject) => {
-        from.on("error", reject);
-        from.on("finish", resolve);
-    })
-}
-*/
