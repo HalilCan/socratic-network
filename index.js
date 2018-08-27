@@ -96,11 +96,12 @@ function getPostsBySearchQuery(query) {
 
 function postContainsQuery(post, query) {
     console.log(`The query is ${query}`);
-    for (let property in post) {
-        if (post.hasOwnProperty(property)) {
-            if (typeof post[property].includes === 'function') {
-                console.log(`Type of ${post[property]} is ${typeof post[property]}`);
-                if (JSON.stringify(post[property]).includes(query)) {
+    for (let prop in post) {
+        if (post.hasOwnProperty(prop)) {
+            let propName  = JSON.stringify(prop);
+            console.log(propName);
+            if (typeof post[propName].includes === 'function') {
+                if (JSON.stringify(post[propName]).includes(query) || post[propName].includes(query)) {
                     console.log(`search positive for ${query}`);
                     return true;
                 }
