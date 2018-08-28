@@ -99,8 +99,13 @@ function postContainsQuery(post, query) {
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
             if (typeof post[prop].includes === 'function') {
-                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query) || post[prop].indexOf(query) > -1) {
-                    console.log(`search positive for ${query}`);
+                let query2 = (query.toString());
+                console.log(JSON.stringify(post[prop]).includes(query2));
+                console.log(post[prop].includes(query2));
+                console.log(post[prop].indexOf(query2) > -1);
+                console.log('\n');
+                if (JSON.stringify(post[prop]).includes(query2) || post[prop].includes(query2) || post[prop].indexOf(query2) > -1) {
+                    console.log(`search positive for ${query2}`);
                     return true;
                 }
             }
