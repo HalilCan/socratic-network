@@ -98,10 +98,8 @@ function postContainsQuery(post, query) {
     console.log(`The query is ${query}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
-            let propName  = JSON.stringify(prop);
-            console.log(propName);
-            if (typeof post[propName].includes === 'function') {
-                if (JSON.stringify(post[propName]).includes(query) || post[propName].includes(query)) {
+            if (typeof post[prop].includes === 'function') {
+                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query) || post[prop].indexOf(query) > -1) {
                     console.log(`search positive for ${query}`);
                     return true;
                 }
@@ -110,6 +108,17 @@ function postContainsQuery(post, query) {
     }
     return false;
 }
+
+function search(arr, s) {
+    var matches = [], i, key;
+
+    for (i = arr.length; i--;)
+        for (key in arr[i])
+            if (arr[i].hasOwnProperty(key) && arr[i][key].indexOf(s) > -1)
+                matches.push(arr[i]);  // <-- This can be changed to anything
+
+    return matches;
+};
 
 function readArchiveSync() {
     stat(archivePath).then((err) => {
