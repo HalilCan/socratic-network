@@ -120,7 +120,7 @@ socket.on('posts by descriptor response', (data) => {
 });
 
 socket.on ('publish success', (data) => {
-   window.alert('publish success!');
+   window.alert('Publish success!');
 });
 
 function readMode() {
