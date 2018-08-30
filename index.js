@@ -25,6 +25,7 @@ io.on('connection', function (socket) {
     socket.on('write mode published', (data) => {
         console.log(JSON.stringify(data));
         addToArchive(data);
+        socket.emit('publish success', {data: JSON.stringify(data)});
     });
     socket.on('get post count', () => {
         socket.emit('post count response', {postCount: readArchiveSync().posts.length});

@@ -119,6 +119,10 @@ socket.on('posts by descriptor response', (data) => {
     }
 });
 
+socket.on ('publish success', (data) => {
+   window.alert('publish success!');
+});
+
 function readMode() {
     setReadInterface(document.getElementById("real-estate"));
 }
@@ -310,6 +314,7 @@ function publish() {
     };
     socket.emit('write mode published', obj);
 }
+
 
 function getFormattedBody(body) {
     let bodyArray = body.split('\n');
