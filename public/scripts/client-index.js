@@ -13,12 +13,15 @@ window.onload = () => {
     searchField.value = "Search";
     searchField.className = "read-field";
     searchField.id = "read-search";
+    searchField.style.width = "60px";
     rightContainer.appendChild(searchField);
 
     let searchButton = document.createElement("button");
     searchButton.name = "search-button";
+    searchButton.innerText = '\u1CC0';
     searchButton.className = "read-button";
     searchButton.id = "read-search";
+    searchButton.style.width = "20px";
     rightContainer.appendChild(searchButton);
 
     searchButton.onclick = () => {search(searchField)};
