@@ -10,10 +10,10 @@ window.onload = () => {
     let searchField = document.createElement("input");
     searchField.type = "text";
     searchField.name = "search";
-    searchField.value = "Search";
+    searchField.placeholder = "Search";
     searchField.className = "read-field";
     searchField.id = "read-search";
-    searchField.style.width = "60px";
+    searchField.style.width = "80px";
     rightContainer.appendChild(searchField);
 
     let searchButton = document.createElement("button");
@@ -21,7 +21,8 @@ window.onload = () => {
     searchButton.innerText = '\u1CC0';
     searchButton.className = "read-button";
     searchButton.id = "read-search";
-    searchButton.style.width = "20px";
+    searchButton.style.width = "30px";
+    searchButton.style.padding = "0";
     rightContainer.appendChild(searchButton);
 
     searchButton.onclick = () => {search(searchField)};
