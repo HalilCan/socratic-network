@@ -95,8 +95,15 @@ function getPostsBySearchQuery(query) {
     return posts;
 }
 
+function objContains(obj, query) {
+    return obj.some(prop => {
+        return (obj.hasOwnProperty(prop) && JSON.stringify(obj[prop].includes(query)));
+    })
+}
+
 function postContainsQuery(post, query) {
     console.log(`The query is ${query}`);
+    console.log(`objContains: ${objContains(post, query)}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
             if (typeof post[prop].includes === 'function') {

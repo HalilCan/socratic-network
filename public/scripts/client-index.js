@@ -13,7 +13,7 @@ window.onload = () => {
     searchField.placeholder = "Search";
     searchField.className = "read-field";
     searchField.id = "read-search";
-    searchField.style.width = "80px";
+    searchField.style.width = "100px";
     rightContainer.appendChild(searchField);
 
     let searchButton = document.createElement("button");
