@@ -57,7 +57,7 @@ socket.on('archive backup', (data) => {
 
 socket.on('list of descriptors of type t', (data) => {
     //TODO: flesh this out
-    console.log(JSON.stringify(data.list));
+    console.log(JSON.stringify((data.list).sort((a, b) => a.localeCompare(b))));
 });
 
 
