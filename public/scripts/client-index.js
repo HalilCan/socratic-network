@@ -31,6 +31,9 @@ window.onload = () => {
     rightContainer.appendChild(searchButton);
 
     searchButton.onclick = () => {search(searchField)};
+
+    //TODO: this is just a test, remove this.
+    socket.emit('get list of descriptors of type t', {type:"labels"});
 };
 
 let postCount = 0;
@@ -51,6 +54,13 @@ socket.on('archive backup', (data) => {
     let date = getCurrentDate();
     downloadText(`SN backup-${date}`, JSON.stringify(data.backup));
 });
+
+socket.on('list of descriptors of type t', (data) => {
+    //TODO: flesh this out
+    console.log(JSON.stringify(data.list));
+});
+
+
 
 function getCurrentDate() {
     let today = new Date();
@@ -187,7 +197,6 @@ function formatPost(postObject) {
     return post;
 
     //TODO: labels need to be separate <span>s
-    //return "<div class = 'post' id = `post" + postObject.index + "`> <div class = 'post-date'>" + formattedDate + "</div> <div class = 'post-title'>" + postObject.title + "</div> <div class = 'post-subtitle'>" + postObject.subtitle + "</div> <div class = 'post-subject'>" + postObject.subjects.join(' ') + "</div> <div class = 'post-body'>" + getformattedBody(postObject.body) + "</div> <div class = 'post-labels'>" + getFormattedLabels(postObject.labels) + "</div> <div class = 'post-separator'></div> </div>";
 }
 
 function getFormattedLabels(labelArray) {

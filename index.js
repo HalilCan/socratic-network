@@ -42,6 +42,9 @@ io.on('connection', function (socket) {
     socket.on('get posts by search query', (data) => {
         socket.emit('posts by search query response', {posts: getPostsBySearchQuery(JSON.stringify(data.query))});
     });
+    socket.on('get list of descriptors of type t', (data) => {
+        socket.emit('list of descriptors of type t', {list: getAllDescriptors(JSON.stringify(data.type))});
+    })
 });
 
 
@@ -117,7 +120,6 @@ function search(arr, s) {
         for (key in arr[i])
             if (arr[i].hasOwnProperty(key) && arr[i][key].indexOf(s) > -1)
                 matches.push(arr[i]);  // <-- This can be changed to anything
-
     return matches;
 }
 
@@ -147,4 +149,17 @@ async function readArchive() {
 
 function saveArchive(updatedArchive) {
     fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
+}
+
+function getAllDescriptors(type) {
+    let archive = readArchiveSync();
+    let descList = [];
+    for (let post of archive.posts) {
+        for (let item of JSON.stringify(post[type])) {
+            if (descList.indexOf(item) < 0) {
+                descList.push(item);
+            }
+        }
+    }
+    return descList;
 }
