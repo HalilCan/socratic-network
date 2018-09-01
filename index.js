@@ -155,7 +155,8 @@ function getAllDescriptors(type) {
     let archive = readArchiveSync();
     let descList = [];
     for (let post of archive.posts) {
-        for (let item of JSON.stringify(post[type])) {
+        let descrArray = JSON.stringify(post[type]).toArray();
+        for (let item of descrArray) {
             if (descList.indexOf(item) < 0) {
                 descList.push(item);
             }
