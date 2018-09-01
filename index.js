@@ -154,15 +154,11 @@ function saveArchive(updatedArchive) {
 function getAllDescriptors(type) {
     let archive = readArchiveSync();
     let descList = [];
-    console.log(type);
+    let editedType = JSON.stringify(type).slice(3, -3);
     for (let post of archive.posts) {
-        //let descrArray = JSON.stringify(post[type]).toArray();
-        let postDesc = post[type];
-        post[type].forEach(function(item) {
-            if (descList.indexOf(JSON.stringify(item)) < 0) {
-                descList.push(JSON.stringify(item));
-            }
-        });
+        for (let item of post[editedType]) {
+            console.log(item);
+        }
     }
     return descList;
 }
