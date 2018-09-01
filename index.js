@@ -100,12 +100,10 @@ function getPostsBySearchQuery(query) {
 }
 
 function postContainsQuery(post, query) {
-    console.log(`The query is ${query}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
             if (typeof post[prop].includes === 'function') {
                 if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query) || JSON.stringify(post[prop]).indexOf(query) > -1) {
-                    console.log(`search positive for ${query}`);
                     return true;
                 }
             }
@@ -159,7 +157,6 @@ function getAllDescriptors(type) {
     let editedType = JSON.stringify(type).slice(3, -3);
     for (let post of archive.posts) {
         for (let item of post[editedType]) {
-            console.log(item);
             if (descList.indexOf(item) < 0) {
                 descList.push(item);
                 descCntList.push(1);
