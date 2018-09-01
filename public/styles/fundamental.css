@@ -7,6 +7,13 @@ body {
     margin: 0;
 }
 
+#label-list {
+    display: none;
+    position: fixed;
+    top: 40px;
+    left: 40px;
+}
+
 ul.topnav {
     list-style-type: none;
     margin: 0;

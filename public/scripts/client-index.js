@@ -72,7 +72,7 @@ function getOrderedDescList(data) {
 }
 
 function publishLabels(labelArray) {
-    let labelList = document.getElementById("labelList");
+    let labelList = document.getElementById("label-list");
     labelList.innerHTML = '';
 
     let labelDiv = getFormattedLabels(labelArray);
@@ -85,7 +85,6 @@ function publishLabels(labelArray) {
 }
 
 socket.on('list of descriptors of type t', (data) => {
-    //TODO: flesh this out
     publishLabels(getOrderedDescList(data));
 });
 
