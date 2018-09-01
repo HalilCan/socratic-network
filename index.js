@@ -157,7 +157,7 @@ function getAllDescriptors(type) {
     let editedType = JSON.stringify(type).slice(3, -3);
     for (let post of archive.posts) {
         for (let item of post[editedType]) {
-            console.log(item);
+            if (descList.indexOf(item) < 0) descList.push(item);
         }
     }
     return descList;
