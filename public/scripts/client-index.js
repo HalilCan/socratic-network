@@ -30,10 +30,12 @@ window.onload = () => {
     searchButton.style.padding = "0";
     rightContainer.appendChild(searchButton);
 
-    searchButton.onclick = () => {search(searchField)};
+    searchButton.onclick = () => {
+        search(searchField)
+    };
 
     //TODO: this is just a test, remove this.
-    socket.emit('get list of descriptors of type t', {type:"labels"});
+    socket.emit('get list of descriptors of type t', {type: "labels"});
 };
 
 let postCount = 0;
@@ -59,8 +61,6 @@ socket.on('list of descriptors of type t', (data) => {
     //TODO: flesh this out
     console.log(JSON.stringify((data.list).sort((a, b) => a.localeCompare(b))));
 });
-
-
 
 function getCurrentDate() {
     let today = new Date();
@@ -138,8 +138,8 @@ socket.on('posts by descriptor response', (data) => {
     }
 });
 
-socket.on ('publish success', (data) => {
-   window.alert('Publish success!');
+socket.on('publish success', (data) => {
+    window.alert('Publish success!');
 });
 
 function readMode() {
