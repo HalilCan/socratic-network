@@ -161,7 +161,7 @@ function getAllDescriptors(type) {
                 descList.push(item);
                 descCntList.push(1);
             } else {
-                descCntList[descCntList.indexOf(item)] += 1;
+                descCntList[descList.indexOf(item)] += 1;
             }
         }
     }
