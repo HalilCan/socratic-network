@@ -260,7 +260,7 @@ function setReadInterface(element, ...options) {
     requestPostCount();
     if (!isPCUpdated) {
         pcUpdatedFunction = () => {
-            for (let i = 0; i < postCount; i++) {
+            for (let i = postCount - 1; i > -1; i--) {
                 getPostByIndex(i);
             }
             isPCUpdated = false;
