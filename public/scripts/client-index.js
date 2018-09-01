@@ -65,7 +65,7 @@ socket.on('list of descriptors of type t', (data) => {
     let dataCopy = JSON.parse(JSON.stringify(data));
     console.log(JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
-        let valB = dataCopy.list.descriptors.indexOf(b);
+        let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
         console.log(`A: ${valA}, B: ${valB}`);
         if (valA > valB) return -1;
         else if (valA === valB) return 0;
