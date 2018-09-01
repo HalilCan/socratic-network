@@ -59,7 +59,13 @@ socket.on('archive backup', (data) => {
 
 socket.on('list of descriptors of type t', (data) => {
     //TODO: flesh this out
-    console.log(JSON.stringify((data.list).sort((a, b) => a.localeCompare(b))));
+    console.log("///");
+    console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => a.localeCompare(b))));
+    console.log("///");
+    console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => {
+        if (data.lists.count[data.lists.descriptors.indexOf(a)] >= data.lists.descriptors.indexOf(b)) return -1;
+        else return 1;
+    })));
 });
 
 function getCurrentDate() {

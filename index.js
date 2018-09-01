@@ -43,7 +43,8 @@ io.on('connection', function (socket) {
         socket.emit('posts by search query response', {posts: getPostsBySearchQuery(JSON.stringify(data.query))});
     });
     socket.on('get list of descriptors of type t', (data) => {
-        socket.emit('list of descriptors of type t', {list: getAllDescriptors(JSON.stringify(data.type))});
+        let JSONobj = getAllDescriptors(JSON.stringify(data.type));
+        socket.emit('list of descriptors of type t', {lists: JSONobj});
     })
 });
 
@@ -153,10 +154,12 @@ function saveArchive(updatedArchive) {
 
 function getAllDescriptors(type) {
     let archive = readArchiveSync();
-    let descList = [], descCntList = [];
+    let descList = [];
+    let descCntList = [];
     let editedType = JSON.stringify(type).slice(3, -3);
     for (let post of archive.posts) {
         for (let item of post[editedType]) {
+            console.log(item);
             if (descList.indexOf(item) < 0) {
                 descList.push(item);
                 descCntList.push(1);
