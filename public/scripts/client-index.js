@@ -57,14 +57,6 @@ socket.on('archive backup', (data) => {
     downloadText(`SN backup-${date}`, JSON.stringify(data.backup));
 });
 
-
-var arr = ["list", "items", "here"];
-$("div").append("<ul></ul>");
-for (var i in arr) {
-    var li = "<li>";
-    $("ul").append(li.concat(arr[i]))
-}
-
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
     let orderedList = [];
@@ -80,7 +72,16 @@ function getOrderedDescList(data) {
 }
 
 function publishLabels(labelArray) {
+    let labelList = document.getElementById("labelList");
+    labelList.innerHTML = '';
 
+    let labelDiv = getFormattedLabels(labelArray);
+
+    labelList.style.display = "block";
+    labelDiv.style.display = "flex";
+    labelDiv.style.flexDirection = "column";
+
+    labelList.appendChild(labelDiv);
 }
 
 socket.on('list of descriptors of type t', (data) => {
