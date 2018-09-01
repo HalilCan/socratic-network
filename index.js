@@ -48,7 +48,6 @@ io.on('connection', function (socket) {
     })
 });
 
-
 const archivePath = __dirname + "/public/archive/arc.json";
 const util = require("util");
 const fs = require("fs");
