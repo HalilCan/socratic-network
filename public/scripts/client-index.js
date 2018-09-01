@@ -221,8 +221,6 @@ function formatPost(postObject) {
     post.appendChild(postSeparator);
 
     return post;
-
-    //TODO: labels need to be separate <span>s
 }
 
 function getFormattedLabels(labelArray) {
@@ -345,6 +343,13 @@ function publish() {
         console.log(passCodeField.value);
         return -1;
     }
+    let labelSplitter = '';
+
+    if (labelsField.value.includes(",")) {
+        labelSplitter = ", ";
+    } else {
+        labelSplitter = " ";
+    }
 
     let obj = {
         index: 999,
@@ -354,7 +359,7 @@ function publish() {
         "subtitle": subTitleField.value,
         "author": "hcm",
         "body": bodyField.value,
-        "labels": labelsField.value.split(", ")
+        "labels": labelsField.value.split(labelSplitter)
     };
     socket.emit('write mode published', obj);
 }
