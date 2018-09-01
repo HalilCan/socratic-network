@@ -62,12 +62,13 @@ socket.on('list of descriptors of type t', (data) => {
     console.log("///");
     //console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => a.localeCompare(b))));
     console.log("///");
-    let dataCopy = JSON.parse(JSON.stringify(data.list));
+    let dataCopy = JSON.parse(JSON.stringify(data));
     console.log(JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
-        let valB = data.list.descriptors.indexOf(b);
-        if ( > ) return -1;
-        else if ()
+        let valB = dataCopy.list.descriptors.indexOf(b);
+        console.log(`A: ${valA}, B: ${valB}`);
+        if (valA > valB) return -1;
+        else if (valA === valB) return 0;
         else return 1;
     })));
 });
