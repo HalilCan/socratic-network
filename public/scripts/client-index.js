@@ -57,20 +57,33 @@ socket.on('archive backup', (data) => {
     downloadText(`SN backup-${date}`, JSON.stringify(data.backup));
 });
 
-socket.on('list of descriptors of type t', (data) => {
-    //TODO: flesh this out
-    console.log("///");
-    //console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => a.localeCompare(b))));
-    console.log("///");
+
+var arr = ["list", "items", "here"];
+$("div").append("<ul></ul>");
+for (var i in arr) {
+    var li = "<li>";
+    $("ul").append(li.concat(arr[i]))
+}
+
+function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
-    console.log(JSON.stringify((data.list.descriptors).sort((a, b) => {
+    let orderedList = [];
+    orderedList = JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
         let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
         console.log(`A: ${valA}, B: ${valB}`);
         if (valA > valB) return -1;
         else if (valA === valB) return 0;
         else return 1;
-    })));
+    }));
+    return
+}
+
+function publishLabels(labelArray);
+
+socket.on('list of descriptors of type t', (data) => {
+    //TODO: flesh this out
+    publishLabels(getOrderedDescList(data));
 });
 
 function getCurrentDate() {
