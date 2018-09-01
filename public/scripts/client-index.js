@@ -60,10 +60,14 @@ socket.on('archive backup', (data) => {
 socket.on('list of descriptors of type t', (data) => {
     //TODO: flesh this out
     console.log("///");
-    console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => a.localeCompare(b))));
+    //console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => a.localeCompare(b))));
     console.log("///");
-    console.log(JSON.stringify((data.lists.descriptors).sort((a, b) => {
-        if (data.lists.count[data.lists.descriptors.indexOf(a)] >= data.lists.descriptors.indexOf(b)) return -1;
+    let dataCopy = JSON.parse(JSON.stringify(data.list));
+    console.log(JSON.stringify((data.list.descriptors).sort((a, b) => {
+        let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
+        let valB = data.list.descriptors.indexOf(b);
+        if ( > ) return -1;
+        else if ()
         else return 1;
     })));
 });

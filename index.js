@@ -44,7 +44,7 @@ io.on('connection', function (socket) {
     });
     socket.on('get list of descriptors of type t', (data) => {
         let JSONobj = getAllDescriptors(JSON.stringify(data.type));
-        socket.emit('list of descriptors of type t', {lists: JSONobj});
+        socket.emit('list of descriptors of type t', {list: JSONobj});
     })
 });
 
