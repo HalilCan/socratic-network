@@ -76,10 +76,12 @@ function getOrderedDescList(data) {
         else if (valA === valB) return 0;
         else return 1;
     }));
-    return
+    return orderedList;
 }
 
-function publishLabels(labelArray);
+function publishLabels(labelArray) {
+
+}
 
 socket.on('list of descriptors of type t', (data) => {
     //TODO: flesh this out
