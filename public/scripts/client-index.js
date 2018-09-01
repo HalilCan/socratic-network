@@ -14,6 +14,11 @@ window.onload = () => {
     searchField.className = "read-field";
     searchField.id = "read-search";
     searchField.style.width = "100px";
+    searchField.onkeypress = (e) => {
+        if (e.keyCode === 13) {
+            search(searchField);
+        }
+    };
     rightContainer.appendChild(searchField);
 
     let searchButton = document.createElement("button");

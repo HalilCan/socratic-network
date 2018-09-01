@@ -95,25 +95,13 @@ function getPostsBySearchQuery(query) {
     return posts;
 }
 
-function objContains(obj, query) {
-    return obj.some(prop => {
-        return (obj.hasOwnProperty(prop) && JSON.stringify(obj[prop].includes(query)));
-    })
-}
-
 function postContainsQuery(post, query) {
     console.log(`The query is ${query}`);
-    console.log(`objContains: ${objContains(post, query)}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
             if (typeof post[prop].includes === 'function') {
-                let query2 = (query.toString());
-                console.log(JSON.stringify(post[prop]).includes(query2));
-                console.log(post[prop].includes(query2));
-                console.log(post[prop].indexOf(query2) > -1);
-                console.log('\n');
-                if (JSON.stringify(post[prop]).includes(query2) || post[prop].includes(query2) || post[prop].indexOf(query2) > -1) {
-                    console.log(`search positive for ${query2}`);
+                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query) || JSON.stringify(post[prop]).indexOf(query) > -1) {
+                    console.log(`search positive for ${query}`);
                     return true;
                 }
             }
@@ -131,7 +119,7 @@ function search(arr, s) {
                 matches.push(arr[i]);  // <-- This can be changed to anything
 
     return matches;
-};
+}
 
 function readArchiveSync() {
     stat(archivePath).then((err) => {
