@@ -63,7 +63,6 @@ function getOrderedDescList(data) {
     orderedList = JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
         let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
-        console.log(`A: ${valA}, B: ${valB}`);
         if (valA > valB) return -1;
         else if (valA === valB) return 0;
         else return 1;
@@ -75,7 +74,8 @@ function publishLabels(labelArray) {
     let labelList = document.getElementById("label-list");
     labelList.innerHTML = '';
 
-    let labelDiv = getFormattedLabels(labelArray);
+    let parsedArray = JSON.parse(labelArray);
+    let labelDiv = getFormattedLabels(parsedArray);
 
     labelList.style.display = "block";
     labelDiv.style.display = "flex";
