@@ -177,7 +177,6 @@ function writeMode() {
 }
 
 function editMode(element) {
-    console.log(element.lastChild.innerHTML);
     setPublishInterface(document.getElementById("real-estate"), {
         type: "edit",
         data: JSON.parse(element.lastChild.innerHTML)
@@ -351,9 +350,6 @@ function setPublishInterface(element, optionsObject) {
 
     if (optionsObject) {
         if (optionsObject.type = "edit") {
-            console.log(optionsObject);
-            console.log(JSON.stringify(optionsObject));
-            console.log(optionsObject.data.subjects);
             let data = optionsObject.data;
             let index = data.index;
             let subjects = data.subjects.toString();
@@ -395,14 +391,24 @@ function publish(optionsObject) {
     }
     let labelSplitter = '';
 
-    if (labelsField.value.includes(",")) {
+    if (labelsField.value.includes(", ")) {
         labelSplitter = ", ";
+    } else if (labelsField.value.includes(",")) {
+        labelSplitter = ",";
     } else {
         labelSplitter = " ";
     }
 
+    let objIndex;
+    if (optionsObject) {
+        objIndex = optionsObject.index;
+    } else {
+        objIndex = 9999;
+    }
+    console.log(objIndex);
+
     let obj = {
-        index: optionsObject.index | 9999,
+        index: objIndex,
         "date": date,
         "subjects": subjectField.value.split(" "),
         "title": titleField.value,
