@@ -351,6 +351,9 @@ function setPublishInterface(element, optionsObject) {
 
     if (optionsObject) {
         if (optionsObject.type = "edit") {
+            console.log(optionsObject);
+            console.log(JSON.stringify(optionsObject));
+            console.log(optionsObject.data.subjects);
             let data = optionsObject.data;
             let index = data.index;
             let subjects = data.subjects;
