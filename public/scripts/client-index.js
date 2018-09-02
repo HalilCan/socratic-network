@@ -356,18 +356,18 @@ function setPublishInterface(element, optionsObject) {
             console.log(optionsObject.data.subjects);
             let data = optionsObject.data;
             let index = data.index;
-            let subjects = data.subjects;
+            let subjects = data.subjects.toString();
             let title = data.title;
             let subtitle = data.subtitle;
             let author = data.author;
             let body = data.body;
-            let labels = data.labels;
+            let labels = data.labels.toString();
 
-            titleField.innerText = title;
-            subjectField.innerText = subjects;
-            subTitleField.innerText = subtitle;
+            titleField.value = title;
+            subjectField.value = subjects;
+            subTitleField.value = subtitle;
             essayField.innerHTML = body;
-            labelsField.innerText = labels;
+            labelsField.value = labels;
 
             publishButton.onclick = () => {
                 publish({type: "edit", index: index, author: author});
