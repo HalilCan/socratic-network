@@ -177,9 +177,10 @@ function writeMode() {
 }
 
 function editMode(element) {
+    console.log(element.lastChild.innerHTML);
     setPublishInterface(document.getElementById("real-estate"), {
         type: "edit",
-        data: JSON.parse(data.post.lastChild.innerHTML)
+        data: JSON.parse(element.lastChild.innerHTML)
     });
 }
 
