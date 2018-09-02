@@ -357,11 +357,14 @@ function setPublishInterface(element, optionsObject) {
             essayField.innerHTML = getFormattedBody(body);
             labelsField.innerHTML = getFormattedLabels(labels);
 
-            publishButton.onclick = publish({type: edit, index: index, author: author});
+            publishButton.onclick = () => {
+                publish({type: "edit", index: index, author: author});
+            }
         }
     }
+}
 
-    element.appendChild(pubContainer)
+element.appendChild(pubContainer)
 }
 
 function publish(optionsObject) {
