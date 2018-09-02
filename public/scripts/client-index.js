@@ -362,10 +362,9 @@ function setPublishInterface(element, optionsObject) {
             }
         }
     }
+    element.appendChild(pubContainer);
 }
 
-element.appendChild(pubContainer)
-}
 
 function publish(optionsObject) {
     let titleField = document.getElementById("pub-title");
