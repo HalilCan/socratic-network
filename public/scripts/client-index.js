@@ -177,10 +177,13 @@ function writeMode() {
 }
 
 function editMode(element) {
-    setPublishInterface(document.getElementById("real-estate"), {type: "edit", elem: data.post});
+    setPublishInterface(document.getElementById("real-estate"), {
+        type: "edit",
+        data: JSON.parse(data.post.lastChild.innerHTML)
+    });
 }
 
-socket.on ('edit mode confirmed', (data) => {
+socket.on('edit mode confirmed', (data) => {
 });
 
 function addPostToDisplay(unformattedPost) {
@@ -339,17 +342,29 @@ function setPublishInterface(element, optionsObject) {
 
     if (optionsObject) {
         if (optionsObject.type = "edit") {
-            let elem = optionsObject.elem;
-            let title = elem.childNodes[1].innerText;
-            let subTitle = elem.childNodes[2].innerText;
-            let subjects = elem.childNodes[3].innerText;
+            let data = optionsObject.data;
+            let index = data.index;
+            let subjects = data.subjects;
+            let title = data.title;
+            let subtitle = data.subtitle;
+            let author = data.author;
+            let body = data.body;
+            let labels = data.labels;
+
+            titleField.innerText = title;
+            subjectField.innerHTML = getFormattedSubjects(subjects);
+            subTitleField.innerText = subtitle;
+            essayField.innerHTML = getFormattedBody(body);
+            labelsField.innerHTML = getFormattedLabels(labels);
+
+            publishButton.onclick = publish({type: edit, index: index, author: author});
         }
     }
 
     element.appendChild(pubContainer)
 }
 
-function publish() {
+function publish(optionsObject) {
     let titleField = document.getElementById("pub-title");
     let subTitleField = document.getElementById("pub-subTitle");
     let subjectField = document.getElementById("pub-subject");
@@ -373,7 +388,7 @@ function publish() {
     }
 
     let obj = {
-        index: 999,
+        index: optionsObject.index | 9999,
         "date": date,
         "subjects": subjectField.value.split(" "),
         "title": titleField.value,

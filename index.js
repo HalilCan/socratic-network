@@ -59,8 +59,12 @@ const writeFileAsync = util.promisify(fs.writeFile);
 
 function addToArchive(jsonPost) {
     let archive = readArchiveSync();
-    jsonPost.index = readArchiveSync().posts.length;
-    archive.posts.push(jsonPost);
+    if (jsonPost.index < archive.posts.length) {
+        archive.posts[jsonPost.index] = jsonPost
+    } else {
+        jsonPost.index = archive.posts.length;
+        archive.posts.push(jsonPost);
+    }
     saveArchive(archive);
 }
 
