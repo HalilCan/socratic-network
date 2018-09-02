@@ -203,10 +203,11 @@ function formatPost(postObject) {
 
     let editButton = document.createElement("button");
     editButton.className = "post-edit-button";
-    editButton.value = "Edit";
+    editButton.innerHTML = "Edit";
     editButton.onclick = () => {
       editMode(post);
     };
+    post.appendChild(editButton);
 
     let postTitle = document.createElement("div");
     postTitle.className = "post-title";

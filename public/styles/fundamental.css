@@ -125,13 +125,18 @@ ul.topnav li.right {
 .post-edit-button {
     position: relative;
     float:right;
-    left: 60px;
-    height: 20px;
-    width: 50px;
+    left: 40px;
+    height: 27px;
+    width: 40px;
     top: 0;
+    padding-left: 6px;
     margin-bottom: -24px;
-    text-align: left;
+    text-align: center;
     overflow: visible;
+
+    background-color: transparent;
+    border: 1px solid #222;
+    border-radius: 3px;
 }
 
 .label-single {
