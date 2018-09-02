@@ -389,8 +389,8 @@ function publish(optionsObject) {
         console.log(passCodeField.value);
         return -1;
     }
-    let labelSplitter = '';
 
+    let labelSplitter = '';
     if (labelsField.value.includes(", ")) {
         labelSplitter = ", ";
     } else if (labelsField.value.includes(",")) {
@@ -398,6 +398,16 @@ function publish(optionsObject) {
     } else {
         labelSplitter = " ";
     }
+
+    let subjectSplitter = '';
+    if (subjectField.value.includes(", ")) {
+        subjectSplitter = ", ";
+    } else if (subjectField.value.includes(",")) {
+        subjectSplitter = ",";
+    } else {
+        subjectSplitter = " ";
+    }
+
 
     let objIndex;
     if (optionsObject) {
@@ -410,7 +420,7 @@ function publish(optionsObject) {
     let obj = {
         index: objIndex,
         "date": date,
-        "subjects": subjectField.value.split(" "),
+        "subjects": subjectField.value.split(subjectSplitter),
         "title": titleField.value,
         "subtitle": subTitleField.value,
         "author": "hcm",
