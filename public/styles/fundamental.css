@@ -122,6 +122,18 @@ ul.topnav li.right {
     overflow: visible;
 }
 
+.post-edit-button {
+    position: relative;
+    float:right;
+    left: 60px;
+    height: 20px;
+    width: 50px;
+    top: 0;
+    margin-bottom: -24px;
+    text-align: left;
+    overflow: visible;
+}
+
 .label-single {
     margin-right: 5px;
     text-decoration: underline;
