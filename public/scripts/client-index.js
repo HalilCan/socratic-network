@@ -361,10 +361,10 @@ function setPublishInterface(element, optionsObject) {
             let labels = data.labels;
 
             titleField.innerText = title;
-            subjectField.innerHTML = getFormattedSubjects(subjects);
+            subjectField.innerText = subjects;
             subTitleField.innerText = subtitle;
-            essayField.innerHTML = getFormattedBody(body);
-            labelsField.innerHTML = getFormattedLabels(labels);
+            essayField.innerHTML = body;
+            labelsField.innerText = labels;
 
             publishButton.onclick = () => {
                 publish({type: "edit", index: index, author: author});
