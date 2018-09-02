@@ -176,6 +176,13 @@ function writeMode() {
     setPublishInterface(document.getElementById("real-estate"));
 }
 
+function editMode(element) {
+    setPublishInterface(document.getElementById("real-estate"), {type: "edit", elem: data.post});
+}
+
+socket.on ('edit mode confirmed', (data) => {
+});
+
 function addPostToDisplay(unformattedPost) {
     document.getElementById("real-estate").appendChild(formatPost(unformattedPost));
 }
@@ -219,6 +226,11 @@ function formatPost(postObject) {
     let postSeparator = document.createElement("div");
     postSeparator.className = "post-separator";
     post.appendChild(postSeparator);
+
+    let backupPostObject = document.createElement("div");
+    backupPostObject.innerHTML = JSON.stringify(postObject);
+    backupPostObject.style.display = "none";
+    post.appendChild(backupPostObject);
 
     return post;
 }
@@ -266,7 +278,7 @@ function setReadInterface(element, ...options) {
     }
 }
 
-function setPublishInterface(element) {
+function setPublishInterface(element, optionsObject) {
     element.innerHTML = '';
 
     let pubContainer = document.createElement("div");
@@ -275,7 +287,7 @@ function setPublishInterface(element) {
     let titleField = document.createElement("input");
     titleField.type = "text";
     titleField.name = "title";
-    titleField.value = "Title";
+    titleField.placeholder = "Title";
     titleField.className = "pub-field";
     titleField.id = "pub-title";
     pubContainer.appendChild(titleField);
@@ -283,7 +295,7 @@ function setPublishInterface(element) {
     let subTitleField = document.createElement("input");
     subTitleField.type = "text";
     subTitleField.name = "subTitle";
-    subTitleField.value = "Sub-title";
+    subTitleField.placeholder = "Sub-title";
     subTitleField.className = "pub-field";
     subTitleField.id = "pub-subTitle";
     pubContainer.appendChild(subTitleField);
@@ -291,7 +303,7 @@ function setPublishInterface(element) {
     let subjectField = document.createElement("input");
     subjectField.type = "text";
     subjectField.name = "subject";
-    subjectField.value = "Subject";
+    subjectField.placeholder = "Subject";
     subjectField.className = "pub-field";
     subjectField.id = "pub-subject";
     pubContainer.appendChild(subjectField);
@@ -305,7 +317,7 @@ function setPublishInterface(element) {
     let labelsField = document.createElement("input");
     labelsField.type = "text";
     labelsField.name = "labels";
-    labelsField.value = "Labels";
+    labelsField.placeholder = "Labels";
     labelsField.className = "pub-field";
     labelsField.id = "pub-labels";
     pubContainer.appendChild(labelsField);
@@ -313,7 +325,7 @@ function setPublishInterface(element) {
     let passCodeField = document.createElement("input");
     passCodeField.type = "text";
     passCodeField.name = "passCode";
-    passCodeField.value = "Passcode";
+    passCodeField.placeholder = "Passcode";
     passCodeField.className = "pub-field";
     passCodeField.id = "pub-passCode";
     pubContainer.appendChild(passCodeField);
@@ -324,6 +336,15 @@ function setPublishInterface(element) {
     publishButton.id = "publish-button";
     publishButton.onclick = publish;
     pubContainer.appendChild(publishButton);
+
+    if (optionsObject) {
+        if (optionsObject.type = "edit") {
+            let elem = optionsObject.elem;
+            let title = elem.childNodes[1].innerText;
+            let subTitle = elem.childNodes[2].innerText;
+            let subjects = elem.childNodes[3].innerText;
+        }
+    }
 
     element.appendChild(pubContainer)
 }
