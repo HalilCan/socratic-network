@@ -201,6 +201,13 @@ function formatPost(postObject) {
     postDate.innerHTML = formattedDate;
     post.appendChild(postDate);
 
+    let editButton = document.createElement("button");
+    editButton.className = "post-edit-button";
+    editButton.value = "Edit";
+    editButton.onclick = () => {
+      editMode(post);
+    };
+
     let postTitle = document.createElement("div");
     postTitle.className = "post-title";
     postTitle.innerHTML = postObject.title;
