@@ -1,6 +1,6 @@
 /* NOTE:
     Here I import http, express, and (later) socket.io.
-    Then, I initialize socket and create a server listening at port 8000.
+    Then, I initialize socket and create a server listening at either the random port Heroku gives me, or 8000.
     Third, the socket.io instance is created on the server.
     Finally, I add _dirname variable for the app in general, since Node doesn't handle file paths well otherwise.
  */
@@ -8,8 +8,9 @@ const http = require("http");
 let express = require('express');
 let app = express();
 let serverHttp = http.createServer(app);
-console.log(process.env.PORT);
-serverHttp.listen(process.env.PORT || 8000); //8000
+let port = process.env.PORT || 8000;
+console.log(port);
+serverHttp.listen(port);
 
 let io = require('socket.io')(serverHttp);
 
