@@ -1,8 +1,5 @@
 let socket = io('http://localhost:8000');
 
-function requestPostCount() {
-    socket.emit('get post count');
-}
 
 window.onload = () => {
     setUpSearchBar();
@@ -27,10 +24,7 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction = null;
 });
 
-// noinspection JSUnusedLocalSymbols
-function requestArchiveBackup() {
-    socket.emit('get archive backup');
-}
+
 
 socket.on('archive backup', (data) => {
     let date = getCurrentDate();
@@ -86,11 +80,7 @@ function getCurrentDate() {
     return (today);
 }
 
-// noinspection JSUnusedLocalSymbols
-function search(searchField) {
-    let query = searchField.value;
-    socket.emit('get posts by search query', {query: query});
-}
+
 
 socket.on('posts by search query response', (data) => {
     if (!data.posts) return;
@@ -113,22 +103,11 @@ function downloadText(filename, string) {
     document.body.removeChild(element);
 }
 
-function getPostByIndex(index) {
-    socket.emit('get post by index', {index: index});
-}
 
 socket.on('post by index', function (data) {
     addPostToDisplay(data.post);
 });
 
-// noinspection JSUnusedLocalSymbols
-function requestPostsByLabel(label) {
-    socket.emit('get posts by label', {label: label});
-}
-
-function requestPostsByDescriptor(descriptorType, descriptorName) {
-    socket.emit('get posts by descriptor', {type: descriptorType, name: descriptorName});
-}
 
 socket.on('posts by label response', (data) => {
     if (!data.posts) return;
