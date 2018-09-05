@@ -1,5 +1,9 @@
-//const logger = require('tracer').console();
-
+/* NOTES:
+    Here I import http, express, and (later) socket.io.
+    Then, I initialize socket and create a server listening at port 8000.
+    Third, the socket.io instance is created on the server.
+    Finally, I add _dirname variable for the app in general, since Node doesn't handle file paths well otherwise.
+ */
 const http = require("http");
 let express = require('express');
 let app = express();
@@ -14,6 +18,9 @@ app.get('/index.html', function (req, res) {
     res.sendFile(__dirname + '/public' + '/routes' + '/index.html');
 });
 
+/* NOTES:
+    This commented-out piece of code can toggle wildcard CORS requests.
+ */
 //io.origins('*:*');
 
 io.on('connection', function (socket) {
