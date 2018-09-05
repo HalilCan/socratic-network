@@ -39,7 +39,7 @@ socket.on('archive backup', (data) => {
 
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
-    //let orderedList = []
+    //let orderedList = [];
     return JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
         let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
