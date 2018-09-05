@@ -31,6 +31,7 @@ let archive = require("./archive");
 /* NOTE:
     This code block is the main "intersection" that the socket-based client-interaction code will flow through. This is a significant part of the program.
     The connection labels and function names are self-explanatory.
+    Sometimes I use JSON.stringify too much, which results in stranger things like /"/string"//
  */
 io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
@@ -53,7 +54,6 @@ io.on('connection', function (socket) {
         socket.emit('posts by label response', {posts: archive.getPostsByLabel(JSON.stringify(data.label))});
     });
     /* NOTE:
-        Sometimes I use JSON.stringify too much, which results in stranger things like /"/string"//
      */
     socket.on('get posts by descriptor', (data) => {
         socket.emit('posts by descriptor response', {posts: archive.getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
