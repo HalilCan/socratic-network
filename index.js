@@ -8,7 +8,7 @@ const http = require("http");
 let express = require('express');
 let app = express();
 let server = http.createServer(app);
-server.listen(8000);
+server.listen(process.env.PORT); //8000
 
 let io = require('socket.io')(server);
 
