@@ -3,6 +3,9 @@
   "version": "0.2.7",
   "description": "Social argument refinement",
   "main": "index.js",
+  "engines": {
+    "node": "10.0.6"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start" : "node index.js"
