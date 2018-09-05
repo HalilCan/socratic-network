@@ -129,3 +129,5 @@ let getFormattedSearchBar = () => {
 
     return searchBarSpan;
 };
+
+//Heroku testing
