@@ -1,8 +1,4 @@
-import elF from "./elementFormatter.js";
-
-
 let socket = io('http://localhost:8000');
-
 
 function requestPostCount() {
     socket.emit('get post count');
@@ -17,7 +13,7 @@ window.onload = () => {
 
 function setUpSearchBar() {
     let rightContainer = document.getElementById("navbar-right");
-    rightContainer.appendChild(elF.getFormattedSearchBar());
+    rightContainer.appendChild(getFormattedSearchBar());
 }
 
 
@@ -59,7 +55,7 @@ function publishLabels(labelArray) {
     labelList.innerHTML = '';
 
     let parsedArray = JSON.parse(labelArray);
-    let labelDiv = elF.getFormattedLabels(parsedArray);
+    let labelDiv = getFormattedLabels(parsedArray);
 
     labelList.style.display = "block";
     labelDiv.style.display = "flex";
@@ -176,7 +172,7 @@ socket.on('edit mode confirmed', (data) => {
 });
 
 function addPostToDisplay(unformattedPost) {
-    document.getElementById("real-estate").appendChild(elF.formatPost(unformattedPost));
+    document.getElementById("real-estate").appendChild(formatPost(unformattedPost));
 }
 
 // noinspection JSUnusedLocalSymbols

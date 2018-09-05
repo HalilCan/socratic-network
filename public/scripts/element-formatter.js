@@ -128,10 +128,4 @@ let getFormattedSearchBar = () => {
     };
 
     return searchBarSpan;
-}
-
-exports.formatPost = formatPost;
-exports.getFormattedLabels = getFormattedLabels;
-exports.getFormattedSubjects = getFormattedSubjects;
-exports.getFormattedBody = getFormattedBody;
-exports.getFormattedSearchBar = getFormattedSearchBar;
+};
