@@ -1,42 +1,24 @@
 let socket = io('http://localhost:8000');
 
+let archive
+
 function requestPostCount() {
     socket.emit('get post count');
 }
 
 window.onload = () => {
-    let rightContainer = document.getElementById("navbar-right");
-
-    let searchField = document.createElement("input");
-    searchField.type = "text";
-    searchField.name = "search";
-    searchField.placeholder = "Search";
-    searchField.className = "read-field";
-    searchField.id = "read-search";
-    searchField.style.width = "100px";
-    searchField.onkeypress = (e) => {
-        if (e.keyCode === 13) {
-            search(searchField);
-        }
-    };
-    rightContainer.appendChild(searchField);
-
-    let searchButton = document.createElement("button");
-    searchButton.name = "search-button";
-    searchButton.innerText = '\u1CC0';
-    searchButton.className = "read-button";
-    searchButton.id = "read-search";
-    searchButton.style.width = "30px";
-    searchButton.style.padding = "0";
-    rightContainer.appendChild(searchButton);
-
-    searchButton.onclick = () => {
-        search(searchField)
-    };
+    setUpSearchBar();
 
     //TODO: this is just a test, remove this.
     socket.emit('get list of descriptors of type t', {type: "labels"});
 };
+
+function setUpSearchBar() {
+    let rightContainer = document.getElementById("navbar-right");
+    rightContainer.appendChild(getFormattedSearchBar());
+}
+
+
 
 let postCount = 0;
 let isPCUpdated = false;
@@ -344,14 +326,5 @@ function publish(optionsObject) {
     socket.emit('write mode published', obj);
 }
 
-
-function getFormattedBody(body) {
-    let bodyArray = body.split('\n');
-    let formattedBody = "";
-    for (let paragraph of bodyArray) {
-        formattedBody += "<div class = 'post-paragraph'>" + paragraph + "</div>"
-    }
-    return formattedBody;
-}
 
 

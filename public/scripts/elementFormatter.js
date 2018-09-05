@@ -63,7 +63,7 @@ let getFormattedLabels = (labelArray) => {
         let labelSpan = document.createElement("a");
         labelSpan.className = "label-single";
         labelSpan.href = "javascript:;";
-        labelSpan.onclick = function (event) {
+        labelSpan.onclick = function () {
             requestPostsByLabel(label)
         };
         labelSpan.innerText = label;
@@ -79,7 +79,7 @@ function getFormattedSubjects(subjectArray) {
         let subjectSpan = document.createElement("a");
         subjectSpan.className = "subject-single";
         subjectSpan.href = "javascript:;";
-        subjectSpan.onclick = function (event) {
+        subjectSpan.onclick = function () {
             requestPostsByDescriptor('subjects', subject);
         };
         subjectSpan.innerText = subject;
@@ -88,9 +88,50 @@ function getFormattedSubjects(subjectArray) {
     return formattedDiv;
 }
 
+function getFormattedBody(body) {
+    let bodyArray = body.split('\n');
+    let formattedBody = "";
+    for (let paragraph of bodyArray) {
+        formattedBody += "<div class = 'post-paragraph'>" + paragraph + "</div>"
+    }
+    return formattedBody;
+}
+
+let getFormattedSearchBar = () => {
+    let searchBarSpan = document.createElement("span");
+
+    let searchField = document.createElement("input");
+    searchField.type = "text";
+    searchField.name = "search";
+    searchField.placeholder = "Search";
+    searchField.className = "read-field";
+    searchField.id = "read-search";
+    searchField.style.width = "100px";
+    searchField.onkeypress = (e) => {
+        if (e.keyCode === 13) {
+            search(searchField);
+        }
+    };
+    searchBarSpan.appendChild(searchField);
+
+    let searchButton = document.createElement("button");
+    searchButton.name = "search-button";
+    searchButton.innerText = '\u1CC0';
+    searchButton.className = "read-button";
+    searchButton.id = "read-search";
+    searchButton.style.width = "30px";
+    searchButton.style.padding = "0";
+    searchBarSpan.appendChild(searchButton);
+
+    searchButton.onclick = () => {
+        search(searchField)
+    };
+
+    return searchBarSpan;
+}
+
 exports.formatPost = formatPost;
 exports.getFormattedLabels = getFormattedLabels;
 exports.getFormattedSubjects = getFormattedSubjects;
-exports.formatPost = formatPost;
-exports.formatPost = formatPost;
-exports.formatPost = formatPost;
+exports.getFormattedBody = getFormattedBody;
+exports.getFormattedSearchBar = getFormattedSearchBar;
