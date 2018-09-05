@@ -19,6 +19,11 @@ app.get('/index.html', function (req, res) {
 });
 
 /* NOTE:
+    Here I import my own packages
+ */
+let archive = require("./archive");
+
+/* NOTE:
     This commented-out piece of code can toggle wildcard CORS requests.
  */
 //io.origins('*:*');
@@ -30,34 +35,34 @@ app.get('/index.html', function (req, res) {
 io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
         let index = data.index;
-        let post = readArchiveSync().posts[index] || readArchiveSync().posts[0];
+        let post = archive.readArchiveSync().posts[index] || archive.readArchiveSync().posts[0];
         socket.emit('post by index', {post: post});
     });
     socket.on('write mode published', (data) => {
         console.log(JSON.stringify(data));
-        addToArchive(data);
+        archive.addToArchive(data);
         socket.emit('publish success', {data: JSON.stringify(data)});
     });
     socket.on('get post count', () => {
-        socket.emit('post count response', {postCount: readArchiveSync().posts.length});
+        socket.emit('post count response', {postCount: archive.readArchiveSync().posts.length});
     });
     socket.on('get archive backup', () => {
-        socket.emit('archive backup', {backup: readArchiveSync()});
+        socket.emit('archive backup', {backup: archive.readArchiveSync()});
     });
     socket.on('get posts by label', (data) => {
-        socket.emit('posts by label response', {posts: getPostsByLabel(JSON.stringify(data.label))});
+        socket.emit('posts by label response', {posts: archive.getPostsByLabel(JSON.stringify(data.label))});
     });
     /* NOTE:
         Sometimes I use JSON.stringify too much, which results in stranger things like /"/string"//
      */
     socket.on('get posts by descriptor', (data) => {
-        socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
+        socket.emit('posts by descriptor response', {posts: archive.getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
     socket.on('get posts by search query', (data) => {
-        socket.emit('posts by search query response', {posts: getPostsBySearchQuery(JSON.stringify(data.query))});
+        socket.emit('posts by search query response', {posts: archive.getPostsBySearchQuery(JSON.stringify(data.query))});
     });
     socket.on('get list of descriptors of type t', (data) => {
-        let JSONobj = getAllDescriptors(JSON.stringify(data.type));
+        let JSONobj = archive.getAllDescriptors(JSON.stringify(data.type));
         socket.emit('list of descriptors of type t', {list: JSONobj});
     })
 });
