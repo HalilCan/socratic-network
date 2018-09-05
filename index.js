@@ -1,4 +1,4 @@
-/* NOTES:
+/* NOTE:
     Here I import http, express, and (later) socket.io.
     Then, I initialize socket and create a server listening at port 8000.
     Third, the socket.io instance is created on the server.
@@ -18,11 +18,15 @@ app.get('/index.html', function (req, res) {
     res.sendFile(__dirname + '/public' + '/routes' + '/index.html');
 });
 
-/* NOTES:
+/* NOTE:
     This commented-out piece of code can toggle wildcard CORS requests.
  */
 //io.origins('*:*');
 
+/* NOTE:
+    This code block is the main "intersection" that the socket-based client-interaction code will flow through. This is a significant part of the program.
+    The connection labels and function names are self-explanatory.
+ */
 io.on('connection', function (socket) {
     socket.on('get post by index', function (data) {
         let index = data.index;
@@ -43,6 +47,9 @@ io.on('connection', function (socket) {
     socket.on('get posts by label', (data) => {
         socket.emit('posts by label response', {posts: getPostsByLabel(JSON.stringify(data.label))});
     });
+    /* NOTE:
+        Sometimes I use JSON.stringify too much, which results in stranger things like /"/string"//
+     */
     socket.on('get posts by descriptor', (data) => {
         socket.emit('posts by descriptor response', {posts: getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
@@ -55,6 +62,9 @@ io.on('connection', function (socket) {
     })
 });
 
+/*
+
+ */
 const archivePath = __dirname + "/public/archive/arc.json";
 const util = require("util");
 const fs = require("fs");
