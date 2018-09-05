@@ -60,7 +60,7 @@ let postContainsQuery = (post, query) => {
     return false;
 };
 
-function search(arr, s) {
+let search = (arr, s) => {
     let matches = [], i, key;
 
     for (i = arr.length; i--;)
@@ -68,9 +68,9 @@ function search(arr, s) {
             if (arr[i].hasOwnProperty(key) && arr[i][key].indexOf(s) > -1)
                 matches.push(arr[i]);  // <-- This can be changed to anything
     return matches;
-}
+};
 
-function readArchiveSync() {
+let readArchiveSync = () => {
     stat(archivePath).then((err) => {
         if (err) {
             if (err.code !== "ENOENT") return {status: 500, body: err};
@@ -79,13 +79,13 @@ function readArchiveSync() {
     });
     let file = fs.readFileSync(archivePath);
     return JSON.parse(file);
-}
+};
 
-function saveArchive(updatedArchive) {
+let saveArchive = (updatedArchive) => {
     fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
-}
+};
 
-function getAllDescriptors(type) {
+let getAllDescriptors = (type) => {
     let archive = readArchiveSync();
     let descList = [];
     let descCntList = [];
@@ -101,4 +101,14 @@ function getAllDescriptors(type) {
         }
     }
     return {descriptors: descList, count: descCntList};
-}
+};
+
+exports.addToArchive = addToArchive;
+exports.saveArchive = saveArchive;
+exports.readArchiveSync = readArchiveSync;
+exports.search = search;
+exports.postContainsQuery = postContainsQuery;
+exports.getPostsBySearchQuery = getPostsBySearchQuery;
+exports.getPostsByDescriptor = getPostsByDescriptor;
+exports.getPostsByLabel = getPostsByLabel;
+exports.getAllDescriptors = getAllDescriptors;
