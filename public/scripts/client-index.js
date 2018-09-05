@@ -1,6 +1,8 @@
+import elF from "./elementFormatter.js";
+
+
 let socket = io('http://localhost:8000');
 
-let elF = require("elementFormatter");
 
 function requestPostCount() {
     socket.emit('get post count');
@@ -17,7 +19,6 @@ function setUpSearchBar() {
     let rightContainer = document.getElementById("navbar-right");
     rightContainer.appendChild(elF.getFormattedSearchBar());
 }
-
 
 
 let postCount = 0;
@@ -43,7 +44,7 @@ socket.on('archive backup', (data) => {
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
     //let orderedList = [];
-    return  JSON.stringify((data.list.descriptors).sort((a, b) => {
+    return JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
         let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
         if (valA > valB) return -1;
