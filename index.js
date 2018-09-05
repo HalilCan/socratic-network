@@ -4,10 +4,10 @@
     Third, the socket.io instance is created on the server.
     Finally, I add _dirname variable for the app in general, since Node doesn't handle file paths well otherwise.
  */
-const http = require("http");
+const https = require("https");
 let express = require('express');
 let app = express();
-let server = http.createServer(app);
+let server = https.createServer(app);
 server.listen(process.env.PORT); //8000
 
 let io = require('socket.io')(server);
