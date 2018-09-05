@@ -1,6 +1,6 @@
 let socket = io('http://localhost:8000');
 
-let archive
+let elF = require("elementFormatter");
 
 function requestPostCount() {
     socket.emit('get post count');
@@ -15,7 +15,7 @@ window.onload = () => {
 
 function setUpSearchBar() {
     let rightContainer = document.getElementById("navbar-right");
-    rightContainer.appendChild(getFormattedSearchBar());
+    rightContainer.appendChild(elF.getFormattedSearchBar());
 }
 
 
@@ -30,6 +30,7 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction = null;
 });
 
+// noinspection JSUnusedLocalSymbols
 function requestArchiveBackup() {
     socket.emit('get archive backup');
 }
@@ -41,15 +42,15 @@ socket.on('archive backup', (data) => {
 
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
-    let orderedList = [];
-    orderedList = JSON.stringify((data.list.descriptors).sort((a, b) => {
+    //let orderedList = [];
+    return  JSON.stringify((data.list.descriptors).sort((a, b) => {
         let valA = dataCopy.list.count[dataCopy.list.descriptors.indexOf(a)];
         let valB = dataCopy.list.count[dataCopy.list.descriptors.indexOf(b)];
         if (valA > valB) return -1;
         else if (valA === valB) return 0;
         else return 1;
     }));
-    return orderedList;
+    //return orderedList;
 }
 
 function publishLabels(labelArray) {
@@ -57,7 +58,7 @@ function publishLabels(labelArray) {
     labelList.innerHTML = '';
 
     let parsedArray = JSON.parse(labelArray);
-    let labelDiv = getFormattedLabels(parsedArray);
+    let labelDiv = elF.getFormattedLabels(parsedArray);
 
     labelList.style.display = "block";
     labelDiv.style.display = "flex";
@@ -88,6 +89,7 @@ function getCurrentDate() {
     return (today);
 }
 
+// noinspection JSUnusedLocalSymbols
 function search(searchField) {
     let query = searchField.value;
     socket.emit('get posts by search query', {query: query});
@@ -122,6 +124,7 @@ socket.on('post by index', function (data) {
     addPostToDisplay(data.post);
 });
 
+// noinspection JSUnusedLocalSymbols
 function requestPostsByLabel(label) {
     socket.emit('get posts by label', {label: label});
 }
@@ -150,14 +153,17 @@ socket.on('publish success', (data) => {
     window.alert('Publish success!');
 });
 
+// noinspection JSUnusedLocalSymbols
 function readMode() {
     setReadInterface(document.getElementById("real-estate"));
 }
 
+// noinspection JSUnusedLocalSymbols
 function writeMode() {
     setPublishInterface(document.getElementById("real-estate"));
 }
 
+// noinspection JSUnusedLocalSymbols
 function editMode(element) {
     setPublishInterface(document.getElementById("real-estate"), {
         type: "edit",
@@ -169,9 +175,10 @@ socket.on('edit mode confirmed', (data) => {
 });
 
 function addPostToDisplay(unformattedPost) {
-    document.getElementById("real-estate").appendChild(elementFormatter.formatPost(unformattedPost));
+    document.getElementById("real-estate").appendChild(elF.formatPost(unformattedPost));
 }
 
+// noinspection JSUnusedLocalSymbols
 function setReadInterface(element, ...options) {
     element.innerHTML = '';
     requestPostCount();
