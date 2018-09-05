@@ -3,6 +3,7 @@ let socket = io('http://localhost:8000');
 
 window.onload = () => {
     setUpSearchBar();
+    readMode();
 
     //TODO: this is just a test, remove this.
     socket.emit('get list of descriptors of type t', {type: "labels"});
