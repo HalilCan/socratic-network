@@ -9,7 +9,7 @@ let express = require('express');
 let app = express();
 let serverHttp = http.createServer(app);
 console.log(process.env.PORT);
-serverHttp.listen(process.env.PORT | 8000); //8000
+serverHttp.listen(process.env.PORT || 8000); //8000
 
 let io = require('socket.io')(serverHttp);
 
