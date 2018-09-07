@@ -5,9 +5,6 @@ window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
     readMode();
-
-    //TODO: this is just a test, remove this.
-    getListofDescriptors("labels");
 };
 
 function setUpSearchBar() {

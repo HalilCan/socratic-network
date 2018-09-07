@@ -8,11 +8,13 @@ body {
 }
 
 #label-list {
+    z-index: 9;
     display: none;
-    position: fixed;
+    position: absolute;
     top: 50px;
     left: 16px;
     text-align: left;
+    background-color: #fef9ee;
 }
 
 ul.topnav {
