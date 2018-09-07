@@ -125,7 +125,6 @@ let getFormattedSearchBar = () => {
     searchField.placeholder = "Search";
     searchField.className = "read-field";
     searchField.id = "read-search";
-    searchField.style.width = "100px";
     searchField.onkeypress = (e) => {
         if (e.keyCode === 13) {
             search(searchField);
@@ -137,9 +136,7 @@ let getFormattedSearchBar = () => {
     searchButton.name = "search-button";
     searchButton.innerText = '🔍 ';
     searchButton.className = "read-button";
-    searchButton.id = "read-search";
-    searchButton.style.width = "30px";
-    searchButton.style.padding = "0";
+    searchButton.id = "read-search-button";
     searchBarSpan.appendChild(searchButton);
 
     searchButton.onclick = () => {

@@ -64,6 +64,17 @@ ul.topnav li.left {
     left: 0;
 }
 
+#read-search {
+    height:24px;
+    width: 100px;
+}
+
+#read-search-button {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+}
+
 .post-author {
     margin-bottom: 10px;
     font-weight: bold;
