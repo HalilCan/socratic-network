@@ -49,6 +49,12 @@ ul.topnav li.right {
     float: right;
 }
 
+ul.topnav li.left {
+    position: absolute;
+    float: left;
+    left: 0;
+}
+
 .post-author {
     margin-bottom: 10px;
     font-weight: bold;
