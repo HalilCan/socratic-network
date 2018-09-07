@@ -33,12 +33,15 @@ let getPostsByLabel = (label) => {
 
 /* NOTE:
     Traverses the archive and returns an array of posts that include a descriptor called {name} of {type}
+    For some reason I couldn't find, the variables get double quotes while passing through the socket. That's why I had to use slice(1,-1) to trim the ends.
  */
 let getPostsByDescriptor = (type, name) => {
     let archive = readArchiveSync();
     let posts = [];
-    //Works with subject to get correct string!
+    name = name.slice(1,-1);
+    type = type.slice(1,-1);
     for (let post of archive.posts) {
+        console.log(post, post[type], name);
         if (JSON.stringify(post[type]).includes(name)) { // noinspection JSUnusedAssignment
             posts.push(post);
         }

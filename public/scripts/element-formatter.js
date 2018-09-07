@@ -1,5 +1,7 @@
 /* NOTE:
-    This lovely piece of code is used to create a formatted post object to be placed in the DOM
+    This lovely piece of code is used to create a formatted post object to be placed in the DOM.
+    onclicks are regularly anonymous functions since that allows for me to use actual arguments.
+    This main function makes use of all the other, more specific formatters.
  */
 let formatPost = (postObject) => {
     let post = document.createElement("div");
@@ -9,7 +11,6 @@ let formatPost = (postObject) => {
     let postDate = document.createElement("div");
     postDate.className = "post-date";
     postDate.innerHTML = postObject.date.split("_").join("/");
-    ;
     post.appendChild(postDate);
 
     let editButton = document.createElement("button");
@@ -62,6 +63,10 @@ let formatPost = (postObject) => {
     return post;
 };
 
+/* NOTE:
+    Taking an array of labels, creates separate DOM nodes that each have their own requestPostsByLabel function.
+    I used href:"javascript:;" here and elsewhere when I wanted elements to appear clickable.
+ */
 let getFormattedLabels = (labelArray) => {
     let formattedDiv = document.createElement("div");
     for (let label of labelArray) {
@@ -69,7 +74,7 @@ let getFormattedLabels = (labelArray) => {
         labelSpan.className = "label-single";
         labelSpan.href = "javascript:;";
         labelSpan.onclick = function () {
-            requestPostsByLabel(label)
+            requestPostsByDescriptor('labels', label);
         };
         labelSpan.innerText = label;
         formattedDiv.appendChild(labelSpan);
@@ -77,7 +82,9 @@ let getFormattedLabels = (labelArray) => {
     return formattedDiv;
 };
 
-
+/* NOTE:
+    Taking an array of subjects, creates separate DOM nodes that each have their own requestPostsByDesrriptor function.
+ */
 function getFormattedSubjects(subjectArray) {
     let formattedDiv = document.createElement("div");
     for (let subject of subjectArray) {
