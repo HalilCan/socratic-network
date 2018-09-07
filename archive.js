@@ -46,6 +46,23 @@ let getPostsByDescriptor = (type, name) => {
     return posts;
 };
 
+let jsonIncludes = (obj, query) => {
+    for (let key in obj) {
+        if (typeof(obj) === 'object') {
+            if (obj.hasOwnProperty(key)) {
+                if (jsonIncludes(obj[key], query)) {
+                    return true;
+                }
+            }
+        } else if (typeof(obj) === 'string') {
+            return obj.includes(query);
+        } else if (typeof(obj) === 'number') {
+            return obj.toString().includes(query);
+        }
+    }
+    return false;
+};
+
 /* NOTE:
     Traverses the archive and returns an array of posts that include the string {query}
  */
@@ -53,7 +70,7 @@ let getPostsBySearchQuery = (query) => {
     let archive = readArchiveSync();
     let posts = [];
     for (let post of archive.posts) {
-        if (postContainsQuery(post, query)) posts.push(post);
+        if (jsonIncludes(post, query)) posts.push(post);
     }
     return posts;
 };
@@ -63,15 +80,13 @@ let getPostsBySearchQuery = (query) => {
     For a given {post} object and a {query}, returns whether {post} contains the string {query} in any application-specific field.
  */
 let postContainsQuery = (post, query) => {
+    console.log(typeof query, query);
+    console.log(`"09/02/2018".includes("20") = ${"09/02/2018".includes("20")}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
-            console.log(typeof post[prop], post[prop], JSON.stringify(post[prop]), '///');
-            if (typeof post[prop].includes === 'function') {
-                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query)) {
-                    return true;
-                }
-            } else {
-                return (post[prop]).indexOf(query) > -1;
+            console.log('\n', prop, typeof post[prop], post[prop], JSON.stringify(post[prop]), '\n///');
+            if (JSON.stringify(post[prop]).includes(query) || JSON.stringify(post[prop]).includes(query.toString())) {
+                return true;
             }
         }
     }
@@ -125,6 +140,7 @@ exports.addToArchive = addToArchive;
 exports.saveArchive = saveArchive;
 exports.readArchiveSync = readArchiveSync;
 exports.search = search;
+exports.jsonIncludes = jsonIncludes;
 exports.postContainsQuery = postContainsQuery;
 exports.getPostsBySearchQuery = getPostsBySearchQuery;
 exports.getPostsByDescriptor = getPostsByDescriptor;

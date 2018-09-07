@@ -9,7 +9,7 @@ let express = require('express');
 let app = express();
 let serverHttp = http.createServer(app);
 let port = process.env.PORT || 8000;
-console.log(port);
+console.log(`Port ${port}`);
 serverHttp.listen(port);
 
 let io = require('socket.io')(serverHttp);
@@ -59,8 +59,6 @@ io.on('connection', function (socket) {
     socket.on('get posts by label', (data) => {
         socket.emit('posts by label response', {posts: archive.getPostsByLabel(JSON.stringify(data.label))});
     });
-    /* NOTE:
-     */
     socket.on('get posts by descriptor', (data) => {
         socket.emit('posts by descriptor response', {posts: archive.getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
