@@ -65,14 +65,18 @@ ul.topnav li.left {
 }
 
 #read-search {
-    height:24px;
+    height:26px;
     width: 100px;
+    border-radius: 2px;
+    border: 1px solid #d0d0d0;
 }
 
 #read-search-button {
     height: 30px;
     width: 30px;
     padding: 0;
+    border-radius: 2px;
+    border: 1px solid #d0d0d0;
 }
 
 .post-author {
@@ -168,7 +172,7 @@ ul.topnav li.left {
     overflow: visible;
 
     background-color: transparent;
-    border: 1px solid #222;
+    border: 1px solid #d0d0d0;
     border-radius: 3px;
 }
 
