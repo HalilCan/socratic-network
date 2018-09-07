@@ -51,14 +51,14 @@ function getOrderedDescList(data) {
 
 function publishLabels(labelArray) {
     let labelList = document.getElementById("label-list");
-    labelList.innerHTML = '';
 
     if (labelList.style.display === "block") {
-        labelList.style.display = "none";
+        fade(labelList);
         return;
     } else {
-        labelList.style.display = "block";
+        unfade(labelList);
     }
+    labelList.innerHTML = '';
 
     let parsedArray = JSON.parse(labelArray);
     let labelDiv = getFormattedLabels(parsedArray);
