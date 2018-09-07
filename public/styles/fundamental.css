@@ -23,6 +23,7 @@ ul.topnav {
     overflow: hidden;
     background-color: #fef9ee;
     padding-left: calc(50vw - 70px);
+    border-bottom: 1px solid #d0d0d0;
 }
 
 ul.topnav li {
