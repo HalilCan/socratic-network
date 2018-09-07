@@ -6,7 +6,7 @@ window.onload = () => {
     readMode();
 
     //TODO: this is just a test, remove this.
-    socket.emit('get list of descriptors of type t', {type: "labels"});
+    getListofDescriptors("labels");
 };
 
 function setUpSearchBar() {

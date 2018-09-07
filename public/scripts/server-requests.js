@@ -16,6 +16,10 @@ function requestPostsByLabel(label) {
     socket.emit('get posts by label', {label: label});
 }
 
+function getListofDescriptors(type) {
+    socket.emit('get list of descriptors of type t', {type: type});
+}
+
 function requestPostsByDescriptor(descriptorType, descriptorName) {
     socket.emit('get posts by descriptor', {type: descriptorType, name: descriptorName});
 }
