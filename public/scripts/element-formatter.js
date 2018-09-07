@@ -40,6 +40,11 @@ let formatPost = (postObject) => {
     postBody.innerHTML = getFormattedBody(postObject.body);
     post.appendChild(postBody);
 
+    let postAuthor = document.createElement("div");
+    postAuthor.className = "post-author";
+    postAuthor.innerHTML = postObject.author;
+    post.appendChild(postAuthor);
+
     let postLabels = document.createElement("div");
     postLabels.className = "post-labels";
     postLabels.appendChild(getFormattedLabels(postObject.labels));

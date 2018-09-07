@@ -49,6 +49,11 @@ ul.topnav li.right {
     float: right;
 }
 
+.post-author {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 .post-separator {
     margin-top: 50px;
     overflow: visible; /* For IE */
@@ -183,7 +188,7 @@ ul.topnav li.right {
     .post-body {
         font-size: 16px;
         line-height: 22px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         text-indent: 15px;
     }
 
@@ -244,7 +249,7 @@ ul.topnav li.right {
     .post-body {
         font-size: 16px;
         line-height: 22px;
-        margin-bottom: 20px;
+        margin-bottom: 5px;
         text-indent: 20px;
     }
 
