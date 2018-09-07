@@ -3,6 +3,9 @@ const util = require("util");
 const fs = require("fs");
 const {stat} = require("fs").promises;
 
+/* NOTE:
+    If a given post object exists in the archive, it gets updated. Otherwise, a new post is added to the archive.
+ */
 let addToArchive = (jsonPost) => {
     let archive = readArchiveSync();
     if (jsonPost.index < archive.posts.length) {
@@ -14,6 +17,9 @@ let addToArchive = (jsonPost) => {
     saveArchive(archive);
 };
 
+/* NOTE:
+    If a given post object exists in the archive, it gets updated. Otherwise, a new post is added to the archive.
+ */
 let getPostsByLabel = (label) => {
     let archive = readArchiveSync();
     let posts = [];
@@ -25,10 +31,12 @@ let getPostsByLabel = (label) => {
     return posts;
 };
 
+/* NOTE:
+    Traverses the archive and returns an array of posts that include a descriptor called {name} of {type}
+ */
 let getPostsByDescriptor = (type, name) => {
     let archive = readArchiveSync();
     let posts = [];
-    //console.log(`get by descriptor request type: ${type}, name: ${name}`);
     //Works with subject to get correct string!
     for (let post of archive.posts) {
         if (JSON.stringify(post[type]).includes(name)) { // noinspection JSUnusedAssignment
@@ -38,6 +46,9 @@ let getPostsByDescriptor = (type, name) => {
     return posts;
 };
 
+/* NOTE:
+    Traverses the archive and returns an array of posts that include the string {query}
+ */
 let getPostsBySearchQuery = (query) => {
     let archive = readArchiveSync();
     let posts = [];
@@ -47,13 +58,20 @@ let getPostsBySearchQuery = (query) => {
     return posts;
 };
 
+
+/* NOTE:
+    For a given {post} object and a {query}, returns whether {post} contains the string {query} in any application-specific field.
+ */
 let postContainsQuery = (post, query) => {
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
+            console.log(typeof post[prop], post[prop], JSON.stringify(post[prop]), '///');
             if (typeof post[prop].includes === 'function') {
-                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query) || JSON.stringify(post[prop]).indexOf(query) > -1) {
+                if (JSON.stringify(post[prop]).includes(query) || post[prop].includes(query)) {
                     return true;
                 }
+            } else {
+                return (post[prop]).indexOf(query) > -1;
             }
         }
     }

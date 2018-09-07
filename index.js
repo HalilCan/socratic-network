@@ -16,7 +16,6 @@ let io = require('socket.io')(serverHttp);
 
 app.use(express.static(__dirname + '/public'));
 
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public' + '/routes' + '/index.html');
 });

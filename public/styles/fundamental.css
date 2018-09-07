@@ -230,6 +230,10 @@ ul.topnav li.left {
         border-right: 1px solid #d0d0d0;
         overflow-wrap: break-word;
     }
+
+    ul.topnav {
+        padding-left: calc(8vw);
+    }
 }
 
 @media only screen and (max-width: 600px) {
