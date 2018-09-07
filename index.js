@@ -63,7 +63,7 @@ io.on('connection', function (socket) {
         socket.emit('posts by descriptor response', {posts: archive.getPostsByDescriptor(JSON.stringify(data.type), JSON.stringify(data.name))});
     });
     socket.on('get posts by search query', (data) => {
-        socket.emit('posts by search query response', {posts: archive.getPostsBySearchQuery(JSON.stringify(data.query))});
+        socket.emit('posts by search query response', {posts: archive.getPostsBySearchQuery(data.query)});
     });
     socket.on('get list of descriptors of type t', (data) => {
         let JSONobj = archive.getAllDescriptors(JSON.stringify(data.type));

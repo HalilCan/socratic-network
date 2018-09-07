@@ -54,11 +54,16 @@ let jsonIncludes = (obj, query) => {
                     return true;
                 }
             }
-        } else if (typeof(obj) === 'string') {
-            return obj.includes(query);
-        } else if (typeof(obj) === 'number') {
-            return obj.toString().includes(query);
         }
+    }
+    if (typeof(obj) === 'string') {
+        let r1 = obj.indexOf(query) > -1;
+        let r2 = obj === query;
+        return r1 || r2;
+    } else if (typeof(obj) === 'number') {
+        let r1 = obj.toString().indexOf(query) > -1;
+        let r2 = obj === query;
+        return r1 || r2;
     }
     return false;
 };
