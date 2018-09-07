@@ -100,6 +100,9 @@ function getFormattedSubjects(subjectArray) {
     return formattedDiv;
 }
 
+/* NOTE:
+    This formats the body of each post according to site rules. I expect this function to have many more features soon.
+ */
 function getFormattedBody(body) {
     let bodyArray = body.split('\n');
     let formattedBody = "";
@@ -109,6 +112,10 @@ function getFormattedBody(body) {
     return formattedBody;
 }
 
+
+/* NOTE:
+    This formats the searchbar on the navbar.
+ */
 let getFormattedSearchBar = () => {
     let searchBarSpan = document.createElement("span");
 
