@@ -121,7 +121,7 @@ let getFormattedSearchBar = () => {
 
     let searchButton = document.createElement("button");
     searchButton.name = "search-button";
-    searchButton.innerText = '\u1CC0';
+    searchButton.innerText = '🔍 ';
     searchButton.className = "read-button";
     searchButton.id = "read-search";
     searchButton.style.width = "30px";

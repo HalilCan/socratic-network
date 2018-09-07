@@ -3,6 +3,7 @@ let socket = io('http://socratic-net.herokuapp.com');
 
 window.onload = () => {
     setUpSearchBar();
+    setUpHamburger();
     readMode();
 
     //TODO: this is just a test, remove this.
@@ -14,6 +15,12 @@ function setUpSearchBar() {
     rightContainer.appendChild(getFormattedSearchBar());
 }
 
+function setUpHamburger() {
+    let hambutton = document.getElementById("hamburger");
+    hambutton.onclick = () => {
+        getListofDescriptors("labels");
+    }
+}
 
 let postCount = 0;
 let isPCUpdated = false;
@@ -49,10 +56,16 @@ function publishLabels(labelArray) {
     let labelList = document.getElementById("label-list");
     labelList.innerHTML = '';
 
+    if (labelList.style.display === "block") {
+        labelList.style.display = "none";
+        return;
+    } else {
+        labelList.style.display = "block";
+    }
+
     let parsedArray = JSON.parse(labelArray);
     let labelDiv = getFormattedLabels(parsedArray);
 
-    labelList.style.display = "block";
     labelDiv.style.display = "flex";
     labelDiv.style.flexDirection = "column";
 

@@ -11,8 +11,8 @@ body {
     display: none;
     position: fixed;
     top: 50px;
-    left: 12vw;
-    text-align: center;
+    left: 16px;
+    text-align: left;
 }
 
 ul.topnav {
