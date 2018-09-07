@@ -46,6 +46,10 @@ let getPostsByDescriptor = (type, name) => {
     return posts;
 };
 
+/* NOTE:
+    Given a JSON object {obj} and a search query {query}, searches recursively through the object and returns true if the object contains the value {query}.
+    Be careful not to overuse JSON. methods, since they can modify the target object too much. For example, quad quotes.
+ */
 let jsonIncludes = (obj, query) => {
     for (let key in obj) {
         if (typeof(obj) === 'object') {
@@ -98,6 +102,9 @@ let postContainsQuery = (post, query) => {
     return false;
 };
 
+/* NOTE:
+    Returns an array {arr} of unique objects from a base array that contain the value {s}.
+ */
 let search = (arr, s) => {
     let matches = [], i, key;
 
@@ -108,6 +115,9 @@ let search = (arr, s) => {
     return matches;
 };
 
+/* NOTE:
+    Reads the entire archive synchronously and returns it as a JSON object. Once the archive gets big enough, I will have to switch to async streams.
+ */
 let readArchiveSync = () => {
     stat(archivePath).then((err) => {
         if (err) {
@@ -119,10 +129,16 @@ let readArchiveSync = () => {
     return JSON.parse(file);
 };
 
+/* NOTE:
+    Saves the archive in memory to the disk.
+ */
 let saveArchive = (updatedArchive) => {
     fs.writeFileSync(archivePath, JSON.stringify(updatedArchive));
 };
 
+/* NOTE:
+    Iterating through the entire archive, finds the field {type} and returns all unique members of every post[type]. I used the .slice part because JSON.stringify was overused. I should fix that.
+ */
 let getAllDescriptors = (type) => {
     let archive = readArchiveSync();
     let descList = [];
