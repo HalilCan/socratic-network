@@ -1,5 +1,5 @@
-//let socket = io('http://socratic-net.herokuapp.com');
-let socket = io('http://localhost:8000');
+let socket = io('http://socratic-net.herokuapp.com');
+//let socket = io('http://localhost:8000');
 
 window.onload = () => {
     setUpSearchBar();
