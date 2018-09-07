@@ -38,8 +38,8 @@ let getPostsByLabel = (label) => {
 let getPostsByDescriptor = (type, name) => {
     let archive = readArchiveSync();
     let posts = [];
-    name = name.slice(1,-1);
-    type = type.slice(1,-1);
+    name = name.slice(1, -1);
+    type = type.slice(1, -1);
     for (let post of archive.posts) {
         console.log(post, post[type], name);
         if (JSON.stringify(post[type]).includes(name)) { // noinspection JSUnusedAssignment
