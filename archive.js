@@ -87,7 +87,7 @@ let editDB = (post, index) => {
 let addToArchive = (jsonPost) => {
     let archive = readArchiveSync();
     if (jsonPost.index < archive.posts.length) {
-        archive.posts[jsonPost.index] = jsonPost
+        archive.posts[jsonPost.index] = jsonPost;
         editDB(jsonPost, jsonPost.index);
     } else {
         jsonPost.index = archive.posts.length;
