@@ -308,7 +308,7 @@ function publish(optionsObject) {
     console.log(objIndex);
 
     let obj = {
-        index: objIndex,
+        "index" : objIndex,
         "date": date,
         "subjects": subjectField.value.split(subjectSplitter),
         "title": titleField.value,

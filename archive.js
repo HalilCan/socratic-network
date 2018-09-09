@@ -3,16 +3,95 @@ const util = require("util");
 const fs = require("fs");
 const {stat} = require("fs").promises;
 
+
+// Setting up mongodb and mongoose
+let mongoose = require('mongoose');
+let dbUri = "mongodb+srv://halilcan:testpwhcm1@hcm1-cmqfz.mongodb.net/test?retryWrites=true";
+mongoose.connect(dbUri, {
+    useNewUrlParser: true
+});
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//
+
+//Mongoose
+// Defining post schema:
+let Schema = mongoose.Schema;
+
+let archiveSchema = new Schema(
+    {
+        index: {type: Number, required: true},
+        date: {type: String, required: true,},
+        subjects: {type: Array, required: true},
+        title: {type: String, required: true},
+        subtitle: {type: String, required: true,},
+        author: {type: String, required: true},
+        body: {type: String, required: true,},
+        labels: {type: String, required: true,}
+    }
+);
+
+let ArchiveModel = mongoose.model('Post', archiveSchema);
+
+let addToDB = (post) => {
+    db.collection('socratic').insertOne(post, function (err, r) {
+        if (err) {
+            return err;
+        }
+        console.log(`inserted count: ${r.insertedCount}`);
+    })
+
+};
+
+let editDB = (post, index) => {
+    db.collection('socratic').findOne({index: index}, function (err, foundPost) {
+        foundPost.date = post.date;
+        foundPost.markModified(date);
+
+        foundPost.subjects = post.subjects;
+        foundPost.markModified(subjects);
+
+        foundPost.title = post.title;
+        foundPost.markModified(title);
+
+        foundPost.subtitle = post.subtitle;
+        foundPost.markModified(subtitle);
+
+        foundPost.author = post.author;
+        foundPost.markModified(author);
+
+        foundPost.body = post.body;
+        foundPost.markModified(body);
+
+        foundPost.labels = post.labels;
+        foundPost.markModified(labels);
+
+        foundPost.save(function (err) {
+            if (err) {
+                console.error(err);
+            }
+        });
+        console.log(`inserted count: ${r.insertedCount}`);
+    })
+};
+///
+
+
 /* NOTE:
     If a given post object exists in the archive, it gets updated. Otherwise, a new post is added to the archive.
  */
+
+//TODO: edit/post behaviour will need to change with mgdb
 let addToArchive = (jsonPost) => {
     let archive = readArchiveSync();
     if (jsonPost.index < archive.posts.length) {
         archive.posts[jsonPost.index] = jsonPost
+        editDB(jsonPost, jsonPost.index);
     } else {
         jsonPost.index = archive.posts.length;
         archive.posts.push(jsonPost);
+        addToDB(jsonPost);
     }
     saveArchive(archive);
 };
