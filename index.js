@@ -12,6 +12,31 @@ let port = process.env.PORT || 8000;
 console.log(`Port ${port}`);
 serverHttp.listen(port);
 
+// Setting up mongodb and mongoose
+let mongoose = require('mongoose');
+let dbUri = "mongodb+srv://halilcan:<testpwhcm1>@hcm1-cmqfz.mongodb.net/test?retryWrites=true";
+mongoose.connect(dbUri);
+mongoose.Promise = global.Promise;
+let db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+//
+
+// Defining post schema:
+let Schema = mongoose.Schema;
+
+let postSchema = new Schema(
+    {
+        id : {type: Number, required: true},
+        date : {type: String, required: true,},
+        subjects : {type: Array, required: true},
+        subtitle : {type: String, required: true,},
+        author : {type: String, required: true},
+        body : {type: String, required: true,},
+        labels: {type: String, required: true,}
+    }
+);
+
+
 let io = require('socket.io')(serverHttp);
 
 app.use(express.static(__dirname + '/public'));
