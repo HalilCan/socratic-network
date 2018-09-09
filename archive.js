@@ -40,8 +40,8 @@ let addToDB = (post) => {
             return err;
         }
         console.log(`inserted count: ${r.insertedCount}`);
-    })
-
+    });
+    console.log(db.collection('socratic').find({}));
 };
 
 let editDB = (post, index) => {
@@ -73,7 +73,8 @@ let editDB = (post, index) => {
             }
         });
         console.log(`inserted count: ${r.insertedCount}`);
-    })
+    });
+    console.log(db.collection('socratic').find({}));
 };
 ///
 
