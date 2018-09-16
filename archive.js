@@ -41,40 +41,31 @@ let addToDB = (post) => {
         }
         console.log(`inserted count: ${r.insertedCount}`);
     });
-    console.log(db.collection('socratic').find({}));
+    //console.log(db.collection('socratic').find({}));
 };
 
 let editDB = (post, index) => {
+    console.log(index);
     db.collection('socratic').findOne({index: index}, function (err, foundPost) {
         foundPost.date = post.date;
-        foundPost.markModified(date);
 
         foundPost.subjects = post.subjects;
-        foundPost.markModified(subjects);
 
         foundPost.title = post.title;
-        foundPost.markModified(title);
 
         foundPost.subtitle = post.subtitle;
-        foundPost.markModified(subtitle);
 
         foundPost.author = post.author;
-        foundPost.markModified(author);
 
         foundPost.body = post.body;
-        foundPost.markModified(body);
 
         foundPost.labels = post.labels;
-        foundPost.markModified(labels);
 
-        foundPost.save(function (err) {
-            if (err) {
-                console.error(err);
-            }
-        });
-        console.log(`inserted count: ${r.insertedCount}`);
+        db.collection('socratic').save(foundPost);
+        //TODO:DeprecationWarning: collection.save is deprecated. Use insertOne, insertMany, updateOne, or updateMany instead.
+        //console.log(`inserted count: ${r.insertedCount}`);
     });
-    console.log(db.collection('socratic').find({}));
+    console.log(db.collection('socratic').find({index: index}));
 };
 ///
 
@@ -172,8 +163,6 @@ let getPostsBySearchQuery = (query) => {
     For a given {post} object and a {query}, returns whether {post} contains the string {query} in any application-specific field.
  */
 let postContainsQuery = (post, query) => {
-    console.log(typeof query, query);
-    console.log(`"09/02/2018".includes("20") = ${"09/02/2018".includes("20")}`);
     for (let prop in post) {
         if (post.hasOwnProperty(prop)) {
             console.log('\n', prop, typeof post[prop], post[prop], JSON.stringify(post[prop]), '\n///');
