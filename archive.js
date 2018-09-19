@@ -34,18 +34,35 @@ let archiveSchema = new Schema(
 
 let ArchiveModel = mongoose.model('Post', archiveSchema);
 
+/*  NOTE:
+    Based on the cached json file, overwrites the Atlas DB. Do not be callous with this.
+ */
 let syncDbUpward = async (collection) => {
     let archive = readArchiveSync();
     for (let post of archive.posts) {
-        let dbPost = db.collection(collection).findOne({index: post.index});
-        if (dbPost != undefined) {
-            //TODO: this is horrendously inefficient and may need async
-            editDB(post, post.index);
-        };
+        db.collection(collection).findOne({index: post.index}, function (err, foundPost) {
+            if (foundPost != undefined) {
+                foundPost.date = post.date;
+
+                foundPost.subjects = post.subjects;
+
+                foundPost.title = post.title;
+
+                foundPost.subtitle = post.subtitle;
+
+                foundPost.author = post.author;
+
+                foundPost.body = post.body;
+
+                foundPost.labels = post.labels;
+
+                db.collection('socratic').save(foundPost);
+                //TODO:DeprecationWarning: collection.save is deprecated. Use insertOne, insertMany, updateOne, or updateMany instead.
+            } else {
+                addToDB(post);
+            }
+        });
     }
-
-
-    db.collection(collection).insertOne()
 };
 
 /* NOTE:
