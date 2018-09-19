@@ -34,16 +34,36 @@ let archiveSchema = new Schema(
 
 let ArchiveModel = mongoose.model('Post', archiveSchema);
 
+let syncDbUpward = async (collection) => {
+    let archive = readArchiveSync();
+    for (let post of archive.posts) {
+        let dbPost = db.collection(collection).findOne({index: post.index});
+        if (dbPost != undefined) {
+            //TODO: this is horrendously inefficient and may need async
+            editDB(post, post.index);
+        };
+    }
+
+
+    db.collection(collection).insertOne()
+};
+
+/* NOTE:
+    Given the connection to the database, inserts the ${post} to collection 'socratic'
+    TODO: Generalize for collections
+ */
 let addToDB = (post) => {
     db.collection('socratic').insertOne(post, function (err, r) {
         if (err) {
             return err;
         }
-        console.log(`inserted count: ${r.insertedCount}`);
     });
-    //console.log(db.collection('socratic').find({}));
 };
 
+/* NOTE:
+    Given the connection to the database, finds the post that shares ${post}'s index, and overwrites its values based on the values of ${post}
+    TODO: Generalize for collections
+ */
 let editDB = (post, index) => {
     console.log(index);
     db.collection('socratic').findOne({index: index}, function (err, foundPost) {
@@ -63,9 +83,7 @@ let editDB = (post, index) => {
 
         db.collection('socratic').save(foundPost);
         //TODO:DeprecationWarning: collection.save is deprecated. Use insertOne, insertMany, updateOne, or updateMany instead.
-        //console.log(`inserted count: ${r.insertedCount}`);
     });
-    console.log(db.collection('socratic').find({index: index}));
 };
 ///
 
