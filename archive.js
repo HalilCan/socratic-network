@@ -34,6 +34,9 @@ let archiveSchema = new Schema(
 
 let ArchiveModel = mongoose.model('Post', archiveSchema);
 
+/* NOTE:
+    Downloads the online database and overwrites local cache.
+ */
 let syncDbDownward = (collection) => {
     let currPost = {not: "undefined, man."};
     let archiveCache = readArchiveSync();
