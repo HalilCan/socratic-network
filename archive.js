@@ -35,7 +35,27 @@ let archiveSchema = new Schema(
 let ArchiveModel = mongoose.model('Post', archiveSchema);
 
 let syncDbDownward = (collection) => {
-
+    let currPost = {not: "undefined, man."};
+    let archiveCache = readArchiveSync();
+    for (let i = 0; currPost != undefined; i++) {
+        db.collection(collection).findOne({index: i}, function (err, foundPost) {
+            currPost = foundPost;
+            if (foundPost != undefined) {
+                currPost = {};
+                //TODO: Add a date condition to this.
+                currPost.date = foundPost.date;
+                currPost.subjects = foundPost.subjects;
+                currPost.title = foundPost.title;
+                currPost.subtitle = foundPost.subtitle;
+                currPost.author = foundPost.author;
+                currPost.body = foundPost.body;
+                currPost.labels = foundPost.labels;
+                currPost.index = i;
+                archiveCache.posts[i] = currPost;
+            }
+        });
+    }
+    saveArchive(archiveCache);
 };
 
 /*  NOTE:
