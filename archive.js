@@ -34,28 +34,26 @@ let archiveSchema = new Schema(
 
 let ArchiveModel = mongoose.model('Post', archiveSchema);
 
+let syncDbDownward = (collection) => {
+
+};
+
 /*  NOTE:
     Based on the cached json file, overwrites the Atlas DB. Do not be callous with this.
  */
-let syncDbUpward = async (collection) => {
+let syncDbUpward = (collection) => {
     let archive = readArchiveSync();
     for (let post of archive.posts) {
         db.collection(collection).findOne({index: post.index}, function (err, foundPost) {
             if (foundPost != undefined) {
+                //TODO: Add a date condition to this.
                 foundPost.date = post.date;
-
                 foundPost.subjects = post.subjects;
-
                 foundPost.title = post.title;
-
                 foundPost.subtitle = post.subtitle;
-
                 foundPost.author = post.author;
-
                 foundPost.body = post.body;
-
                 foundPost.labels = post.labels;
-
                 db.collection('socratic').save(foundPost);
                 //TODO:DeprecationWarning: collection.save is deprecated. Use insertOne, insertMany, updateOne, or updateMany instead.
             } else {
@@ -85,19 +83,12 @@ let editDB = (post, index) => {
     console.log(index);
     db.collection('socratic').findOne({index: index}, function (err, foundPost) {
         foundPost.date = post.date;
-
         foundPost.subjects = post.subjects;
-
         foundPost.title = post.title;
-
         foundPost.subtitle = post.subtitle;
-
         foundPost.author = post.author;
-
         foundPost.body = post.body;
-
         foundPost.labels = post.labels;
-
         db.collection('socratic').save(foundPost);
         //TODO:DeprecationWarning: collection.save is deprecated. Use insertOne, insertMany, updateOne, or updateMany instead.
     });
