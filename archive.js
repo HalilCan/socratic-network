@@ -288,3 +288,5 @@ exports.getPostsBySearchQuery = getPostsBySearchQuery;
 exports.getPostsByDescriptor = getPostsByDescriptor;
 exports.getPostsByLabel = getPostsByLabel;
 exports.getAllDescriptors = getAllDescriptors;
+exports.syncDBUpward = syncDbUpward;
+exports.syncDBDownward = syncDbDownward;
