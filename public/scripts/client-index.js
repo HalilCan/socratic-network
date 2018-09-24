@@ -1,5 +1,7 @@
 let socket = io('http://socratic-net.herokuapp.com');
 //let socket = io('http://localhost:8000');
+//Atlas testing successful boys!
+
 
 window.onload = () => {
     setUpSearchBar();
