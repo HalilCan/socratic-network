@@ -6,7 +6,7 @@ const {stat} = require("fs").promises;
 
 // Setting up mongodb and mongoose
 let mongoose = require('mongoose');
-let dbUri = "mongodb+srv://halilcan:testpwhcm1@hcm1-cmqfz.mongodb.net/Socratic?retryWrites=true";
+let dbUri = "mongodb+srv://halilcan:testpwhcm1@hcm1-cmqfz.mongodb.net/socratic?retryWrites=true";
 mongoose.connect(dbUri, {
     useNewUrlParser: true
 });
