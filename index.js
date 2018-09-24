@@ -69,6 +69,9 @@ io.on('connection', function (socket) {
         let JSONobj = archive.getAllDescriptors(JSON.stringify(data.type));
         socket.emit('list of descriptors of type t', {list: JSONobj});
     })
+    socket.on('syncDbUpward', (data) => {
+        archive.syncDBUpward("posts");
+    });
 });
 
 

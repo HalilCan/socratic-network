@@ -5,7 +5,13 @@ window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
     readMode();
+    requestSyncDbUpward();
 };
+
+function requestSyncDbUpward () {
+    socket.emit('syncDbUpward', {});
+}
+
 
 function setUpSearchBar() {
     let rightContainer = document.getElementById("navbar-right");
