@@ -5,7 +5,7 @@ window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
     readMode();
-    //requestSyncDbUpward();
+    requestSyncDbUpward();
 };
 
 function requestSyncDbUpward () {
