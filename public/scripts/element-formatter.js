@@ -107,7 +107,7 @@ function getFormattedBody(body) {
     let bodyArray = body.split('\n');
     let formattedBody = "";
     for (let paragraph of bodyArray) {
-        formattedBody += "<div class = 'post-paragraph'>" + paragraph + "</div>"
+        formattedBody += "<p class = 'post-paragraph'>" + paragraph + "</p>"
     }
     return formattedBody;
 }
