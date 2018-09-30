@@ -38,7 +38,7 @@ let formatPost = (postObject) => {
 
     let postBody = document.createElement("div");
     postBody.className = "post-body";
-    postBody.innerHTML = getFormattedBody(postObject.body);
+    postBody.appendChild(getFormattedBody(postObject.body));
     post.appendChild(postBody);
 
     let postAuthor = document.createElement("div");
@@ -119,9 +119,8 @@ function getFormattedBody(body) {
  */
 
 function getFormattedParagraph(rawPar) {
-    let parElem = document.createElement("paragraph");
+    let parElem = document.createElement("p");
     parElem.className = "post-paragraph";
-
     parElem.innerHTML = rawPar;
     return parElem;
 }
