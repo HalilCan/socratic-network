@@ -16,10 +16,10 @@ let formatPost = (postObject) => {
     let editButton = document.createElement("button");
     editButton.className = "post-edit-button";
     editButton.innerHTML = "Edit";
-    editButton.onclick = () => {
-        editMode(post);
-    };
     post.appendChild(editButton);
+    editButton.onclick = () => {
+        editMode(postObject);
+    };
 
     let postTitle = document.createElement("div");
     postTitle.className = "post-title";

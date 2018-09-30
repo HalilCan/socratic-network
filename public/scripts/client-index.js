@@ -155,10 +155,10 @@ function writeMode() {
 }
 
 // noinspection JSUnusedLocalSymbols
-function editMode(element) {
+function editMode(jsonObject) {
     setPublishInterface(document.getElementById("real-estate"), {
         type: "edit",
-        data: JSON.parse(element.lastChild.innerHTML)
+        data: jsonObject
     });
 }
 
@@ -250,7 +250,7 @@ function setPublishInterface(element, optionsObject) {
             let title = data.title;
             let subtitle = data.subtitle;
             let author = data.author;
-            let body = data.body.innerHTML;
+            let body = data.body;
             let labels = data.labels.toString();
 
             titleField.value = title;
