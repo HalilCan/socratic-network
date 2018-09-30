@@ -2,7 +2,6 @@
 let socket = io('http://localhost:8000');
 //Atlas testing successful boys!
 
-
 window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
@@ -13,7 +12,6 @@ window.onload = () => {
 function requestSyncDbUpward () {
     socket.emit('syncDbUpward', {});
 }
-
 
 function setUpSearchBar() {
     let rightContainer = document.getElementById("navbar-right");
@@ -36,8 +34,6 @@ socket.on('post count response', (data) => {
     pcUpdatedFunction();
     pcUpdatedFunction = null;
 });
-
-
 
 socket.on('archive backup', (data) => {
     let date = getCurrentDate();

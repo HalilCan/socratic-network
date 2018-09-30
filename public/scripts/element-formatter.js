@@ -105,7 +105,6 @@ function getFormattedSubjects(subjectArray) {
  */
 function getFormattedBody(body) {
     let bodyArray = body.split('\n');
-    console.log(bodyArray);
     let formattedBody = "";
     for (let paragraph of bodyArray) {
         formattedBody += "<p class = 'post-paragraph'>" + paragraph + "</p>"
