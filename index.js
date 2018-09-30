@@ -24,6 +24,10 @@ app.get('/index.html', function (req, res) {
     res.sendFile(__dirname + '/public' + '/routes' + '/index.html');
 });
 
+app.get('/admin', function (req, res) {
+    res.sendFile(__dirname + '/public' + '/routes' + '/admin.html');
+});
+
 /* NOTE:
     Here I import my own packages
  */
@@ -68,9 +72,18 @@ io.on('connection', function (socket) {
     socket.on('get list of descriptors of type t', (data) => {
         let JSONobj = archive.getAllDescriptors(JSON.stringify(data.type));
         socket.emit('list of descriptors of type t', {list: JSONobj});
-    })
+    });
     socket.on('syncDbUpward', (data) => {
         archive.syncDBUpward("posts");
+    });
+    socket.on('admin - submit password', (data) => {
+        //TODO: Send admin page as DOM after the correct password is submit.
+        if (admin.isAdminPw(data.adminPassword)) {
+            socket.emit("correct admin pw", admin.generateAdminDashboardDOM());
+        }
+        else {
+            socket.emit("wrong admin pw", {});
+        }
     });
 });
 
