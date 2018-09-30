@@ -33,13 +33,10 @@ let formatPost = (postObject) => {
 
     let postSubject = document.createElement("div");
     postSubject.className = "post-subject";
-    postSubject.appendChild(getFormattedSubjects(postObject.subjects));
+    post.appendChild(getFormattedSubjects(postObject.subjects));
     post.appendChild(postSubject);
 
-    let postBody = document.createElement("div");
-    postBody.className = "post-body";
-    postBody.appendChild(getFormattedBody(postObject.body));
-    post.appendChild(postBody);
+    post.appendChild(getFormattedBody(postObject.body));
 
     let postAuthor = document.createElement("div");
     postAuthor.className = "post-author";

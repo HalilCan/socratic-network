@@ -250,7 +250,7 @@ function setPublishInterface(element, optionsObject) {
             let title = data.title;
             let subtitle = data.subtitle;
             let author = data.author;
-            let body = data.body;
+            let body = data.body.innerHTML;
             let labels = data.labels.toString();
 
             titleField.value = title;
