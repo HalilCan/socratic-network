@@ -52,11 +52,6 @@ let formatPost = (postObject) => {
     postSeparator.className = "post-separator";
     post.appendChild(postSeparator);
 
-    let backupPostObject = document.createElement("div");
-    backupPostObject.innerHTML = JSON.stringify(postObject);
-    backupPostObject.style.display = "none";
-    post.appendChild(backupPostObject);
-
     return post;
 };
 
