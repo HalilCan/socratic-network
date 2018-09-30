@@ -105,13 +105,26 @@ function getFormattedSubjects(subjectArray) {
  */
 function getFormattedBody(body) {
     let bodyArray = body.split('\n');
-    let formattedBody = "";
+    let formattedBody = document.createElement("div");
+    formattedBody.className = "post-body";
     for (let paragraph of bodyArray) {
-        formattedBody += "<p class = 'post-paragraph'>" + paragraph + "</p>"
+        let paragraphDOM = getFormattedParagraph(paragraph);
+        formattedBody.appendChild(paragraphDOM);
     }
     return formattedBody;
 }
 
+/*
+    This is where incline "markdown" support will occur.
+ */
+
+function getFormattedParagraph(rawPar) {
+    let parElem = document.createElement("paragraph");
+    parElem.className = "post-paragraph";
+
+    parElem.innerHTML = rawPar;
+    return parElem;
+}
 
 /* NOTE:
     This formats the searchbar on the navbar.
