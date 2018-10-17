@@ -5,8 +5,8 @@ let socket = io('http://localhost:8000');
 window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
-    readMode();
     //requestSyncDbUpward();
+    writeMode();
 };
 
 function requestSyncDbUpward () {
