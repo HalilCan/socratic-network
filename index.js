@@ -79,7 +79,7 @@ io.on('connection', function (socket) {
     socket.on('admin - submit password', (data) => {
         //TODO: Send admin page as DOM after the correct password is submit.
         if (admin.isAdminPw(data.adminPassword)) {
-            socket.emit("correct admin pw", admin.generateAdminDashboardDOM());
+            socket.emit("correct admin pw", admin.generateAdminDashboard());
         }
         else {
             socket.emit("wrong admin pw", {});
