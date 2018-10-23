@@ -42,9 +42,13 @@ socket.on('archive backup', (data) => {
 
 socket.on('correct admin pw', (data) => {
     let dom = data.dom;
-    displayDOM(dom);
+    switchToDOM(dom);
 });
 
+function switchToDOM(dom) {
+    let realEstate = document.getElementById("real-estate");
+    realEstate.innerHTML = dom;
+}
 
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
