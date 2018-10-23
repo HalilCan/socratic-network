@@ -40,6 +40,12 @@ socket.on('archive backup', (data) => {
     downloadText(`SN backup-${date}`, JSON.stringify(data.backup));
 });
 
+socket.on('correct admin pw', (data) => {
+    let dom = data.dom;
+    displayDOM(dom);
+});
+
+
 function getOrderedDescList(data) {
     let dataCopy = JSON.parse(JSON.stringify(data));
     //let orderedList = [];

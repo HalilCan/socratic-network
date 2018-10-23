@@ -10,13 +10,13 @@ let generateAdminDashboard = () => {
         <meta charset="UTF-8">
         <title>Admin Dashboard</title>
     <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="../styles/fundamental.css">
+        <link rel="stylesheet" href="public/styles/fundamental.css">
 
-        <script type="text/javascript" src="../scripts/socket.io-client-master/dist/socket.io.js"></script>
-        <script type="text/javascript" src="../scripts/client-admin.js"></script>
-        <script type="text/javascript" src="../scripts/element-formatter.js"></script>
-        <script type="text/javascript" src="../scripts/server-requests.js"></script>
-        <script type="text/javascript" src="../scripts/utility.js"></script>
+        <script type="text/javascript" src="public/scripts/socket.io-client-master/dist/socket.io.js"></script>
+        <script type="text/javascript" src="public/scripts/client-admin.js"></script>
+        <script type="text/javascript" src="public/scripts/element-formatter.js"></script>
+        <script type="text/javascript" src="public/scripts/server-requests.js"></script>
+        <script type="text/javascript" src="public/scripts/utility.js"></script>
         </head>
 
         <body>

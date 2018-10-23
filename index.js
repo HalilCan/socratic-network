@@ -32,6 +32,7 @@ app.get('/admin', function (req, res) {
     Here I import my own packages
  */
 let archive = require("./archive");
+let admin = require("./admin");
 
 /* NOTE:
     This commented-out piece of code can toggle wildcard CORS requests.
@@ -79,7 +80,7 @@ io.on('connection', function (socket) {
     socket.on('admin - submit password', (data) => {
         //TODO: Send admin page as DOM after the correct password is submit.
         if (admin.isAdminPw(data.adminPassword)) {
-            socket.emit("correct admin pw", admin.generateAdminDashboard());
+            socket.emit("correct admin pw", {dom: admin.generateAdminDashboard()});
         }
         else {
             socket.emit("wrong admin pw", {});
