@@ -165,21 +165,25 @@ function elt(type, props, ...children) {
 }
 
 function generateSingleQueryForm(prefix, placeholder, eventFun) {
-    return elt("span", )
-    let searchBarSpan = document.createElement("span");
+    let inputField = elt("input", {
+        type : "text",
+        name: prefix,
+        placeholder: placeholder,
+        className: "singular-form-input-field",
+        id: prefix + "-input",
+        onkeypress : ((e) => {
+            eventFun(inputField);
+        })
+    });
+    let executeButton = elt()
 
-    let searchField = document.createElement("input");
-    searchField.type = "text";
-    searchField.name = "search";
-    searchField.placeholder = "Search";
-    searchField.className = "read-field";
-    searchField.id = "read-search";
-    searchField.onkeypress = (e) => {
-        if (e.keyCode === 13) {
-            search(searchField);
-        }
-    };
-    searchBarSpan.appendChild(searchField);
+    return elt("span", {
+        id : prefix + "-form-container"
+    }, [
+        inputField,
+        executeButton
+    ]);
+
 
     let searchButton = document.createElement("button");
     searchButton.name = "search-button";
