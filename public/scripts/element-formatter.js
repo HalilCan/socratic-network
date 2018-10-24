@@ -164,7 +164,7 @@ function elt(type, props, ...children) {
     return dom;
 }
 
-function generateFlexCenter(prefix, hmargin, vmargin) {
+function generateFlexCenter(prefix, hmargin, hcenter, vmargin, vcenter, targetFlowDirection) {
     return elt("section", {
         className: "flex-center-container",
         id: prefix + "-flex-center-container",
@@ -172,28 +172,46 @@ function generateFlexCenter(prefix, hmargin, vmargin) {
         flexDirection: "row"
     }, [
         elt("section", {
-            className: "flex-center-container-hgap"
+            className: "flex-center-container-hgap",
+            display: "flex",
+            flexDirection: "column",
+            flex: hmargin.toString()
         }), elt("section", {
-                className: "screen-container-hcenter",
-                id: "pw-screen-container-hcenter"
+                className: "flex-center-container-hcenter",
+                id: prefix + "-flex-center-container-hcenter",
+                display: "flex",
+                flexDirection: "column",
+                flex: hcenter.toString(),
             },
             [
                 elt("section", {
-                    className: "screen-container-vgap"
+                    className: "flex-center-container-vgap",
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: vmargin.toString()
                 }),
                 elt("section", {
-                        className: "screen-container-hcenter",
-                        id: "pw-screen-container-hcenter"
+                        className: "flex-center-container-vcenter",
+                        id: prefix + "-flex-center-container-vcenter",
+                        display: "flex",
+                        flexDirection: targetFlowDirection,
+                        flex: vcenter.toString(),
                     },
                     elt()
                 ),
                 elt("section", {
-                    className: "screen-container-vgap"
+                    className: "flex-center-container-vgap",
+                    display: "flex",
+                    flexDirection: "row",
+                    flex: vmargin.toString()
                 }),
             ]
         ),
         elt("section", {
-            className: "screen-container-hgap"
+            className: "flex-center-container-hgap",
+            display: "flex",
+            flexDirection: "column",
+            flex: hmargin.toString()
         })
     ]);
 }
