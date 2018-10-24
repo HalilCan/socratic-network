@@ -164,7 +164,38 @@ function elt(type, props, ...children) {
     return dom;
 }
 
-function generateFlexCenter(prefix, hmargin, hcenter, vmargin, vcenter, targetFlowDirection) {
+function generateSingleQueryForm(prefix, placeholder, eventFun) {
+    return elt("span", )
+    let searchBarSpan = document.createElement("span");
+
+    let searchField = document.createElement("input");
+    searchField.type = "text";
+    searchField.name = "search";
+    searchField.placeholder = "Search";
+    searchField.className = "read-field";
+    searchField.id = "read-search";
+    searchField.onkeypress = (e) => {
+        if (e.keyCode === 13) {
+            search(searchField);
+        }
+    };
+    searchBarSpan.appendChild(searchField);
+
+    let searchButton = document.createElement("button");
+    searchButton.name = "search-button";
+    searchButton.innerText = '🔍 ';
+    searchButton.className = "read-button";
+    searchButton.id = "read-search-button";
+    searchBarSpan.appendChild(searchButton);
+
+    searchButton.onclick = () => {
+        search(searchField)
+    };
+
+    return searchBarSpan;
+}
+
+function generateFlexCenter(prefix, hmargin, hcenter, vmargin, vcenter, targetFlowDirection, centerContent) {
     return elt("section", {
         className: "flex-center-container",
         id: prefix + "-flex-center-container",

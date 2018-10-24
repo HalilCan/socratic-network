@@ -199,7 +199,11 @@ function setReadInterface(element, ...options) {
 
 function setAdminReadyInterface(element, optionsObject) {
     element.innerHTML = "";
-    let pwContainer =
+    let pwForm = elt("span", {
+        className: "pw-form-span"
+    })
+    let pwContainer = generateFlexCenter("pw-interface", 1, 3, 1, 4, "column");
+
 }
 
 
