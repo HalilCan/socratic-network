@@ -149,3 +149,51 @@ let getFormattedSearchBar = () => {
 
     return searchBarSpan;
 };
+
+function elt(type, props, ...children) {
+    //create the dom elt
+    let dom = document.createElement(type);
+    //assign properties
+    if (props) Object.assign(dom, props);
+    //append all the children
+    for (let child of children) {
+        if (typeof child != `string`) dom.appendChild(child);
+        else dom.appendChild(document.createTextNode(child));
+    }
+    //return the element
+    return dom;
+}
+
+function generateFlexCenter(prefix, hmargin, vmargin) {
+    return elt("section", {
+        className: "flex-center-container",
+        id: prefix + "-flex-center-container",
+        display: "flex",
+        flexDirection: "row"
+    }, [
+        elt("section", {
+            className: "flex-center-container-hgap"
+        }), elt("section", {
+                className: "screen-container-hcenter",
+                id: "pw-screen-container-hcenter"
+            },
+            [
+                elt("section", {
+                    className: "screen-container-vgap"
+                }),
+                elt("section", {
+                        className: "screen-container-hcenter",
+                        id: "pw-screen-container-hcenter"
+                    },
+                    elt()
+                ),
+                elt("section", {
+                    className: "screen-container-vgap"
+                }),
+            ]
+        ),
+        elt("section", {
+            className: "screen-container-hgap"
+        })
+    ]);
+}

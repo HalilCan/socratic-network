@@ -10,7 +10,7 @@ window.onload = () => {
     adminPwMode();
 };
 
-function requestSyncDbUpward () {
+function requestSyncDbUpward() {
     socket.emit('syncDbUpward', {});
 }
 
@@ -107,7 +107,6 @@ function getCurrentDate() {
 }
 
 
-
 socket.on('posts by search query response', (data) => {
     if (!data.posts) return;
     document.getElementById("real-estate").innerHTML = '';
@@ -166,7 +165,7 @@ function writeMode() {
 }
 
 function adminPwMode() {
-
+    setAdminReadyInterface(document.getElementById("real-estate"));
 }
 
 // noinspection JSUnusedLocalSymbols
@@ -197,6 +196,13 @@ function setReadInterface(element, ...options) {
         }
     }
 }
+
+function setAdminReadyInterface(element, optionsObject) {
+    element.innerHTML = "";
+    let pwContainer =
+}
+
+
 
 function setPublishInterface(element, optionsObject) {
     element.innerHTML = '';
@@ -327,7 +333,7 @@ function publish(optionsObject) {
     console.log(objIndex);
 
     let obj = {
-        "index" : objIndex,
+        "index": objIndex,
         "date": date,
         "subjects": subjectField.value.split(subjectSplitter),
         "title": titleField.value,
