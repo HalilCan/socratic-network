@@ -6,7 +6,8 @@ window.onload = () => {
     setUpSearchBar();
     setUpHamburger();
     //requestSyncDbUpward();
-    writeMode();
+    //writeMode();
+    adminPwMode();
 };
 
 function requestSyncDbUpward () {
@@ -162,6 +163,10 @@ function readMode() {
 // noinspection JSUnusedLocalSymbols
 function writeMode() {
     setPublishInterface(document.getElementById("real-estate"));
+}
+
+function adminPwMode() {
+
 }
 
 // noinspection JSUnusedLocalSymbols
