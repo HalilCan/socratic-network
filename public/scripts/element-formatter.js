@@ -164,39 +164,33 @@ function elt(type, props, ...children) {
     return dom;
 }
 
-function generateSingleQueryForm(prefix, placeholder, eventFun) {
+function generateSingleQueryForm(prefix, placeholder, buttonText, eventFun) {
     let inputField = elt("input", {
-        type : "text",
+        type: "text",
         name: prefix,
         placeholder: placeholder,
-        className: "singular-form-input-field",
-        id: prefix + "-input",
-        onkeypress : ((e) => {
+        className: "query-input",
+        id: prefix + "-query-input",
+        onkeypress: ((e) => {
             eventFun(inputField);
         })
     });
-    let executeButton = elt()
+    let executeButton = elt("button", {
+        name: "execute-button",
+        innerText: buttonText,
+        className: "query-button",
+        id: prefix + "-query-button",
+        onclick: (() => {
+            eventFun(inputField)
+        })
+    });
 
     return elt("span", {
-        id : prefix + "-form-container"
+        id: prefix + "-form-container"
     }, [
         inputField,
         executeButton
     ]);
-
-
-    let searchButton = document.createElement("button");
-    searchButton.name = "search-button";
-    searchButton.innerText = '🔍 ';
-    searchButton.className = "read-button";
-    searchButton.id = "read-search-button";
-    searchBarSpan.appendChild(searchButton);
-
-    searchButton.onclick = () => {
-        search(searchField)
-    };
-
-    return searchBarSpan;
 }
 
 function generateFlexCenter(prefix, hmargin, hcenter, vmargin, vcenter, targetFlowDirection, centerContent) {
